@@ -2,22 +2,21 @@
 
 cListaPasajeros::cListaPasajeros(int L)
 {
+	peso = 0.0;
+	ca = 0;
 	//inicializamos todos los punteros de la lista a null
+	ListaPasajeros = new cPasajero * [MAX];
 	for (int i = 0; i < L; i++)
 	{
 		ListaPasajeros[i] = NULL;
 	}
 }
 
-cListaPasajeros::~cListaPasajeros() //HACER
+cListaPasajeros::~cListaPasajeros() //CONSULTAR
 {
 	if (ListaPasajeros != NULL) {
 
-		for (int i = 0; i < ca; i++)
-		{
-			if (ListaPasajeros[i] != NULL)
-				ListaPasajeros[i] = NULL;
-		}
+		delete ListaPasajeros;
 
 	}
 }

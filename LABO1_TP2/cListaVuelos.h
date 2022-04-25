@@ -7,8 +7,6 @@
 class cListaVuelos
 {
 	cVuelo** ListaVuelos;
-	float peso;
-	string DNI;
 	int ca;
 
 public:

@@ -3,6 +3,7 @@
 cListaAviones::cListaAviones(int L)
 {
 	//inicializamos todos los punteros de la lista a null
+	ListaAviones = new cAvion * [MAX];
 	for (int i = 0; i < L; i++)
 	{
 		ListaAviones[i] = NULL; 

@@ -12,7 +12,7 @@ class cListaValija
 	int ca;
 
 public:
-	cListaValija(int L = MAX);
+	cListaValija(float _peso, string _DNI);
 	~cListaValija();
 	bool Agregar(cValija* Valija);
 	cValija* Quitar(int pos);

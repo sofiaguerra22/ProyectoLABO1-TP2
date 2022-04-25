@@ -1,16 +1,20 @@
 #include "cListaValija.h"
 
-cListaValija::cListaValija(int L)
+cListaValija::cListaValija(float _peso, string _DNI)
 {
+	peso = _peso;
+	ca = 0;
+	DNI = _DNI;
 	//inicializamos todos los punteros de la lista a null
-	for (int i = 0; i < L; i++)
+	ListaValija = new cValija * [MAX];
+	for (int i = 0; i < MAX; i++)
 	{
 		ListaValija[i] = NULL;
 	}
 
 }
 
-cListaValija::~cListaValija()
+cListaValija::~cListaValija() //CONSULTAR
 {
 	if (ListaValija != NULL) {
 
@@ -27,7 +31,7 @@ bool cListaValija::Agregar(cValija* Valija)
 {
 	for (int i = ca; i < MAX; i++) //recorre desde la cantidad actual de punteros hasta el final de la lista hasta buscar un espacio libre
 	{
-		if (ListaValija[i] = NULL)
+		if (ListaValija[i] == NULL)
 		{
 			ListaValija[i] = Valija;
 			return true;

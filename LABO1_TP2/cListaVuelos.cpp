@@ -2,7 +2,9 @@
 
 cListaVuelos::cListaVuelos(int L)
 {
+	ca = 0;
 	//inicializamos todos los punteros de la lista a null
+	ListaVuelos = new cVuelo * [MAX];
 	for (int i = 0; i < L; i++)
 	{
 		ListaVuelos[i] = NULL;
