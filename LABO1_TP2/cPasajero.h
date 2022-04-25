@@ -24,7 +24,7 @@ private: //metodos:
 	~cPasajero();
 	bool AgregarValija(float peso);
 	float PesoTotal(); //suma el peso del pasajero (75kg) con sus valijas 
-	void setVuelo(cVuelo* _vuelo);
+	void setVuelo(cVuelo* _vuelo); //LLAMA A AGREGAR PASAJERO
 	
 };
 

@@ -77,12 +77,17 @@ cPasajero* cListaPasajeros::operator[](int posic_i) //HACER
 	return nullptr;
 }
 
-int cListaPasajeros::Buscar(int clave) //CONSULTAR
+int cListaPasajeros::Buscar(string _DNI) //CONSULTAR
 {
 	for (int i = 0; i < ca; i++)
 	{
-		if (ListaPasajeros[i]);
+		if (DNI == _DNI)
+		{
+			return i;
+			break;
+		}
 	}
+	return -1;
 }
 
 void cListaPasajeros::Listar() //HACER

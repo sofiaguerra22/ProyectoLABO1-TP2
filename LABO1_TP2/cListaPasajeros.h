@@ -18,7 +18,7 @@ public:
 	cPasajero* Quitar(int pos);
 	bool Eliminar(int pos);
 	cPasajero* operator[](int posic_i);
-	int Buscar(int clave);
+	int Buscar(string _DNI);
 	void Listar(); //imprime la lista en pantalla
 };
 
