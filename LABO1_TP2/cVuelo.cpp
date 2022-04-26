@@ -1,13 +1,7 @@
 #include "cVuelo.h"
 #include "cPasajero.h"
-/*int cantpasajerosVuelos, numeroVuelo;
-	float pesoVuelo;
-	bool estado; //a tiempo o retrasado
-	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
-	cListapasajerosVuelos** pasajerosVuelos; //lista de pasajerosVuelos
-	eDestino destino; //enum de destinos
-	cAvion* avion; 
-	cListaValija* valijas; //lista de valijas*/
+#include "cListaPasajeros.h"
+
 
 cVuelo::cVuelo() 
 {
@@ -19,6 +13,9 @@ cVuelo::cVuelo()
 	pasajerosVuelo = NULL;
 	avion = NULL;
 	valija = NULL;
+	/*for (int i = 0; i < maxpasajeros; i++) {
+		*listapasajeros[i] = cListaPasajeros<
+	}*/
 }
 
 cVuelo::~cVuelo()
@@ -33,7 +30,9 @@ cVuelo::~cVuelo()
 
 bool cVuelo::AgregarPasajero(string DNI) //CONSULTAR
 {
-	int pos = 0;
+	int pos = pasajero->Buscar(DNI);
+
+	pasajerosVuelo[cantpasajeros] = pasajero;
 
 	
 }

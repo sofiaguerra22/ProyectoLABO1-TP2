@@ -3,21 +3,24 @@
 #include <stdio.h>
 #include <string>
 #include "Enums.h"
-#include "cListaPasajeros.h"
 #include "cListaValija.h"
-#define maxpasajeros 100;
+
+constexpr auto maxpasajeros = 100;//consultar
 class cAvion;
 class cPasajero;
+class cListaPasajeros;
 using namespace std;
 class cVuelo
 {
 	//atributos:
+private:
 	int cantpasajeros, numeroVuelo;
 	float pesoVuelo;
 	bool estado; //a tiempo o retrasado
 	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
-	cPasajero** pasajerosVuelo; //lista de pasajeros
-	cListaPasajeros** listapasajeros; //puntero a la lista CONSULTAR!!
+	cListaPasajeros** pasajerosVuelo; //lista de pasajeros en el vuelo
+	cListaPasajeros* pasajero;
+	//cListaPasajeros** listapasajeros; //puntero a la lista total de pasajeros
 	eDestino destino; //enum de destinos
 	cAvion* avion; 
 	cListaValija* valija; //lista de valijas
