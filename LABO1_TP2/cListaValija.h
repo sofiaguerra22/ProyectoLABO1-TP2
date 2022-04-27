@@ -12,6 +12,7 @@ class cListaValija
 	int ca;
 
 public:
+	cListaValija(); //dos constructores uno por parámetro y otro vacío
 	cListaValija(float _peso, string _DNI);
 	~cListaValija();
 	bool Agregar(cValija* Valija);
@@ -20,6 +21,7 @@ public:
 	cValija* operator[](int posic_i);
 	int Buscar(int clave);
 	void Listar(); //imprime la lista en pantalla
+	int getCA() { return ca; };
 
 };
 

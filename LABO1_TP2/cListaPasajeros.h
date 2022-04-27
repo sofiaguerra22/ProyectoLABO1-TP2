@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include "cPasajero.h"
-#define MAX 100
+constexpr auto MAX = 100;
 
 class cListaPasajeros
 {
@@ -16,8 +16,10 @@ private:
 	int ca;
 
 public:
+	cListaPasajeros(); //Cosntructor que no recibe parámetros
 	cListaPasajeros(int L = MAX);
 	~cListaPasajeros();
+	cPasajero** getListaPasajeros(); //CONSULTAR
 	bool Agregar(cPasajero* Pasajero);
 	cPasajero* Quitar(int pos);
 	bool Eliminar(int pos);
@@ -25,4 +27,5 @@ public:
 	int Buscar(string _DNI);
 	void Listar(); //imprime la lista en pantalla
 	friend class cVuelo;
+	int getCA() { return ca; };
 };

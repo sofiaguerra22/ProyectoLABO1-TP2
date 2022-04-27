@@ -1,5 +1,9 @@
 #include "cListaValija.h"
 
+cListaValija::cListaValija()
+{
+}
+
 cListaValija::cListaValija(float _peso, string _DNI)
 {
 	peso = _peso;

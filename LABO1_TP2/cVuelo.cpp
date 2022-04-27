@@ -1,7 +1,9 @@
 #include "cVuelo.h"
-#include "cPasajero.h"
-#include "cListaPasajeros.h"
 
+/*cPasajero** listaPasajerosVuelo; //puntero doble que almacena en posiciones de memoria cada uno de los pasajeros en el vuelo
+	cPasajero* pasajero;
+	cValija** listaValijasVuelo;
+	cValija* valijaVuelo;*/
 
 cVuelo::cVuelo() 
 {
@@ -10,31 +12,71 @@ cVuelo::cVuelo()
 	pesoVuelo = 0.0;
 	estado = false;
 	fechaArribo, fechaPartida, horaArribo, horaPartida = 0;
-	pasajerosVuelo = NULL;
+	listaPasajerosVuelo = NULL;
 	avion = NULL;
 	valija = NULL;
-	/*for (int i = 0; i < maxpasajeros; i++) {
-		*listapasajeros[i] = cListaPasajeros<
-	}*/
+	pasajeroVuelo = NULL;
+	pasajeroCambio = NULL;
+	listaPasajerosVuelo = new cListaPasajeros(); //
+	listaValijasVuelo = new cListaValija();
 }
 
-cVuelo::~cVuelo()
+cVuelo::~cVuelo() //completar el destructor
 {
-	if (pasajerosVuelo != NULL)
-		pasajerosVuelo = NULL;
-	if (avion != NULL)
-		avion = NULL;
-	if (valija != NULL)
-		valija = NULL;
+	
 }
 
 bool cVuelo::AgregarPasajero(string DNI) //CONSULTAR
 {
-	int pos = pasajero->Buscar(DNI);
 
-	pasajerosVuelo[cantpasajeros] = pasajero;
+	if (listaPasajerosVuelo->Buscar(DNI) != -1) //si encontró el dni en la lista
+	{
+		pasajeroVuelo->numerovuelo = numeroVuelo;
+		cantpasajeros++;
+		pasajeroVuelo->asiento = cantpasajeros; //se le asigna el último asiento
+		pesoVuelo = pasajeroVuelo->PesoTotal();  //se le agrega al peso total del vuelo, el peso del nuevo pasajero
+		return true; // se agregó el pasajero éxitosamente 
+	}
+	else
+	{
+		return false; //no se pudo agregar el pasajero
+	}
+}
 
-	
+void cVuelo::ObtenerDatos(string DNI)
+{
+
+		if (listaPasajerosVuelo->Buscar(DNI) != -1) //si encontró el dni en la lista
+		{
+			//LLAMAR A FUNCIÓN IMPRIMIR 
+		}
+
+}
+
+bool cVuelo::CambiarPasajero(string DNI_1, string DNI_2) //el 1 es el actual y el 2 es el nuevo pasajero
+{
+	if (listaPasajerosVuelo->Buscar(DNI_1) != -1 && listaPasajerosVuelo->Buscar(DNI_2) != -1) // si ambos existen...
+	{
+		//cambio de asiento:
+		int auxasiento = pasajeroVuelo->asiento;
+		pasajeroVuelo->asiento = 0;
+		pasajeroCambio->asiento = auxasiento;
+
+		//cambio de vuelo:
+		int auxvuelo = pasajeroVuelo->numerovuelo;
+		pasajeroVuelo->numerovuelo = 0;
+		pasajeroCambio->numerovuelo = auxvuelo;
+
+		//cambio peso:
+		pesoVuelo = pesoVuelo - pasajeroVuelo->PesoTotal() + pasajeroCambio->PesoTotal();
+
+		return true; //se realizo el cambio de manr¿era exitosa 
+
+	}
+	else
+	{
+		return false; // en el caso que no exista alguno de los dnis enviados
+	}
 }
 
 float cVuelo::PesoVuelo()
