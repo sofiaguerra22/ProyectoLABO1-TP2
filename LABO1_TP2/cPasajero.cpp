@@ -58,3 +58,13 @@ float cPasajero::PesoTotal()
 
 	
 }*/
+void cPasajero::ImprimirDatos()
+{
+	cout << this->toString() << endl;
+}
+
+string cPasajero::toString()
+{
+	return "Asiento" + to_string(asiento) + " " + "DNI:" + DNI + " " + "Equipaje" + to_string(equipaje) + "Fecha:" + to_string(fecha);
+}
+

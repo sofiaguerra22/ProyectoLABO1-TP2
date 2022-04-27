@@ -33,6 +33,7 @@ public:
 	void ObtenerDatos(string DNI);
 	bool CambiarPasajero(string DNI_1, string DNI_2); //el 1 es el actual y el 2 es el nuevo pasajero
 	float PesoVuelo();
-	
+	void ImprimirDatos();
+	string toString();
 };
 

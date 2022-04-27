@@ -83,3 +83,15 @@ float cVuelo::PesoVuelo()
 {
 	return false;
 }
+
+void cVuelo::ImprimirDatos()
+{
+	cout << this->toString() << endl;
+}
+
+string cVuelo::toString()
+{
+	return "Cantidad de pasajeros:" + to_string(cantpasajeros) + " " + "Num vuelo:" + to_string(numeroVuelo) + " "
+		+ "peso vuelo:" + to_string(pesoVuelo) + "Fecha y hora arribo:" + to_string(fechaArribo) + to_string(horaArribo) + " " +
+		"Fecha y hora partida:" + to_string(fechaPartida) + to_string(horaPartida) + " " + "Destino:" + DestinoToString(destino);
+}
