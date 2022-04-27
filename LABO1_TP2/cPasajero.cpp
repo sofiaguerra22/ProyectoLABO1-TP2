@@ -50,7 +50,7 @@ bool cPasajero::AgregarEquipaje(float peso)
 
 float cPasajero::PesoTotal()
 {
-	return acumpeso; 
+	return acumpeso + 75;
 }
 
 /*void cPasajero::setVuelo(cVuelo* _vuelo) //COMPLETAR

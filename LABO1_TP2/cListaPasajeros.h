@@ -16,6 +16,7 @@ private:
 	int ca;
 
 public:
+	cListaPasajeros(); //Cosntructor que no recibe parámetros
 	cListaPasajeros(int L = MAX);
 	~cListaPasajeros();
 	cPasajero** getListaPasajeros(); //CONSULTAR
@@ -26,4 +27,5 @@ public:
 	int Buscar(string _DNI);
 	void Listar(); //imprime la lista en pantalla
 	friend class cVuelo;
+	int getCA() { return ca; };
 };

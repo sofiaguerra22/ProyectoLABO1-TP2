@@ -14,7 +14,7 @@ class cPasajero
 public: //atributos:
 	int asiento, numerovuelo;
 	string DNI;
-	bool equipaje;
+	bool equipaje; // si tiene equipaje o no
 	long int fecha;
 	float acumpeso; // pesototal; //peso total de las valijas
 	//cVuelo* vuelo;
