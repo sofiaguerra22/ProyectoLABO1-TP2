@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <string>
 #include "Enums.h"
-#include "cListaValija.h"
+#include "cValija.h"
+#include "cPasajero.h" //es friend class 
+#include "cListaPasajeros.h" //friend class
 
 constexpr auto maxpasajeros = 100;//consultar
 class cAvion;
-class cPasajero;
-class cListaPasajeros;
 using namespace std;
 class cVuelo
 {
@@ -18,8 +18,10 @@ private:
 	float pesoVuelo;
 	bool estado; //a tiempo o retrasado
 	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
-	cListaPasajeros** pasajerosVuelo; //lista de pasajeros en el vuelo
-	cListaPasajeros* pasajero;
+	cPasajero** listaPasajerosVuelo; //puntero doble que almacena en posiciones de memoria cada uno de los pasajeros en el vuelo
+	cListaPasajeros* pasajeroVuelo; // de tipo lista?
+	cValija** listaValijasVuelo;
+	cValija* valijaVuelo;
 	//cListaPasajeros** listapasajeros; //puntero a la lista total de pasajeros
 	eDestino destino; //enum de destinos
 	cAvion* avion; 
@@ -30,5 +32,6 @@ public:
 	~cVuelo();
 	bool AgregarPasajero(string DNI);
 	float PesoVuelo();
+	
 };
 

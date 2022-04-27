@@ -1,7 +1,9 @@
 #include "cVuelo.h"
-#include "cPasajero.h"
-#include "cListaPasajeros.h"
 
+/*cPasajero** listaPasajerosVuelo; //puntero doble que almacena en posiciones de memoria cada uno de los pasajeros en el vuelo
+	cPasajero* pasajero;
+	cValija** listaValijasVuelo;
+	cValija* valijaVuelo;*/
 
 cVuelo::cVuelo() 
 {
@@ -10,31 +12,29 @@ cVuelo::cVuelo()
 	pesoVuelo = 0.0;
 	estado = false;
 	fechaArribo, fechaPartida, horaArribo, horaPartida = 0;
-	pasajerosVuelo = NULL;
+	listaPasajerosVuelo = NULL;
 	avion = NULL;
 	valija = NULL;
-	/*for (int i = 0; i < maxpasajeros; i++) {
-		*listapasajeros[i] = cListaPasajeros<
-	}*/
+	for (int i = 0; i < maxpasajeros; i++)
+	{
+		listaPasajerosVuelo[i] = NULL;
+	}
+	for (int i = 0; i < 300; i++) //maximo de tres valijas por persona (3) * maximo de personas (100) = 300
+	{
+		listaValijasVuelo[i] = NULL;
+	}
+	pasajeroVuelo = NULL;
+	valijaVuelo = NULL;
 }
 
-cVuelo::~cVuelo()
+cVuelo::~cVuelo() //completar el destructor
 {
-	if (pasajerosVuelo != NULL)
-		pasajerosVuelo = NULL;
-	if (avion != NULL)
-		avion = NULL;
-	if (valija != NULL)
-		valija = NULL;
+	
 }
 
 bool cVuelo::AgregarPasajero(string DNI) //CONSULTAR
 {
-	int pos = pasajero->Buscar(DNI);
-
-	pasajerosVuelo[cantpasajeros] = pasajero;
-
-	
+	pasajeroVuelo->Buscar(DNI);
 }
 
 float cVuelo::PesoVuelo()

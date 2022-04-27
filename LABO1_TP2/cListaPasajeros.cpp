@@ -21,6 +21,12 @@ cListaPasajeros::~cListaPasajeros() //CONSULTAR
 	}
 }
 
+cPasajero** cListaPasajeros::getListaPasajeros()
+{
+	return ListaPasajeros; 
+	
+}
+
 bool cListaPasajeros::Agregar(cPasajero* Pasajero)
 {
 	for (int i = ca; i < MAX; i++) //recorre desde la cantidad actual de punteros hasta el final de la lista hasta buscar un espacio libre
