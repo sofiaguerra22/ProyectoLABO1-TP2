@@ -1,14 +1,14 @@
 #include "cPasajero.h"
 
-cPasajero::cPasajero(int _asiento, string _DNI)
+cPasajero::cPasajero(string _DNI)
 {
-	//vuelo = NULL; //inicializamos el puntero vuelo a NULL
 	for (int i = 0; i < maxvalijas; i++)
 	{
 		valijas[i] = NULL; //incializamos todas los punteros de valijas a NULL
 	}
 	equipaje = false;
-	asiento = _asiento; 
+	numerovuelo = -1; //cuando el numero de vuelo es -1 es porque todavia no se le asigno
+	asiento = -1; //cuando el asiento es -1 es porque todaia no fue asigando
 	DNI = _DNI;
 	fecha = 0;
 	acumpeso = 0;// pesototal = 0;

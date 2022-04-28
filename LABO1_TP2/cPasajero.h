@@ -22,7 +22,7 @@ public: //atributos:
 
 
 private: //metodos:
-	cPasajero(int _asiento, string _DNI);
+	cPasajero(string _DNI);
 	~cPasajero();
 	bool AgregarEquipaje(float peso);
 	float PesoTotal(); //suma el peso del pasajero (75kg) con sus valijas 

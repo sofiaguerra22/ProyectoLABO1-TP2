@@ -17,8 +17,17 @@ cVuelo::cVuelo()
 	valija = NULL;
 	pasajeroVuelo = NULL;
 	pasajeroCambio = NULL;
-	listaPasajerosVuelo = new cListaPasajeros(); //
-	listaValijasVuelo = new cListaValija();
+	listaPasajeros = new cListaPasajeros(); // CONSULTA
+	listaValijas = new cListaValija();
+	for (int i = 0; i < listaPasajeros->getCA(); i++) //CONSULTAR POR INICIALIZACION
+	{
+		listaPasajerosVuelo == NULL;
+	}
+	for (int i = 0; i < listaValijas->getCA(); i++)
+	{
+		listaValijasVuelo == NULL;
+	}
+
 }
 
 cVuelo::~cVuelo() //completar el destructor
@@ -29,12 +38,13 @@ cVuelo::~cVuelo() //completar el destructor
 bool cVuelo::AgregarPasajero(string DNI) //CONSULTAR
 {
 
-	if (listaPasajerosVuelo->Buscar(DNI) != -1) //si encontró el dni en la lista
+	if (listaPasajeros->Buscar(DNI) != -1) //si encontró el dni en la lista
 	{
 		pasajeroVuelo->numerovuelo = numeroVuelo;
 		cantpasajeros++;
 		pasajeroVuelo->asiento = cantpasajeros; //se le asigna el último asiento
 		pesoVuelo = pasajeroVuelo->PesoTotal();  //se le agrega al peso total del vuelo, el peso del nuevo pasajero
+		listaPasajerosVuelo[cantpasajeros] = pasajeroVuelo; //agregamos el pasajero a la lista de pasajeros del vuelo
 		return true; // se agregó el pasajero éxitosamente 
 	}
 	else
@@ -45,34 +55,50 @@ bool cVuelo::AgregarPasajero(string DNI) //CONSULTAR
 
 void cVuelo::ObtenerDatos(string DNI)
 {
-
-		if (listaPasajerosVuelo->Buscar(DNI) != -1) //si encontró el dni en la lista
+	for (int i = 0; i < cantpasajeros; i++)
+	{
+		if (listaPasajerosVuelo[i]->DNI == DNI)
 		{
-			//LLAMAR A FUNCIÓN IMPRIMIR 
+			//LLAMA A FUNCION IMPRIMIR E IMPRIME LOS DATOS DE ESE PASAJERO
 		}
+	}
 
 }
 
 bool cVuelo::CambiarPasajero(string DNI_1, string DNI_2) //el 1 es el actual y el 2 es el nuevo pasajero
 {
-	if (listaPasajerosVuelo->Buscar(DNI_1) != -1 && listaPasajerosVuelo->Buscar(DNI_2) != -1) // si ambos existen...
+	int i, pos_1, pos_2 = 0;
+	for (i = 0; i < cantpasajeros; i++);
 	{
+		if (listaPasajerosVuelo[i]->DNI == DNI_1) //encuentra al pasajero en la lista de pasajeros del vuelo
+		{
+			pos_1 = i; //guarda la posición del pasajero
+		}
+	}
+	if (listaPasajeros->Buscar(DNI_2) != -1) //el dni dos existe en la lista
+	{
+		pos_2 = listaPasajeros->Buscar(DNI_2);
+		pasajeroVuelo = listaPasajeros->; //CONSULTAR PORQUE QUIERO IGUALAR EL PUNTERO AL PASAJERO EN ESA POSICION !!
 		//cambio de asiento:
 		int auxasiento = pasajeroVuelo->asiento;
-		pasajeroVuelo->asiento = 0;
+		pasajeroVuelo->asiento = -1; //si el asiento es -1 es pq no tiene ningun asiento asigando
 		pasajeroCambio->asiento = auxasiento;
 
 		//cambio de vuelo:
 		int auxvuelo = pasajeroVuelo->numerovuelo;
-		pasajeroVuelo->numerovuelo = 0;
+		pasajeroVuelo->numerovuelo = -1;
 		pasajeroCambio->numerovuelo = auxvuelo;
 
 		//cambio peso:
 		pesoVuelo = pesoVuelo - pasajeroVuelo->PesoTotal() + pasajeroCambio->PesoTotal();
 
+		//cambio lista: 
+		listaPasajerosVuelo[pos_1] = pasajeroCambio;
+
 		return true; //se realizo el cambio de manr¿era exitosa 
 
 	}
+	
 	else
 	{
 		return false; // en el caso que no exista alguno de los dnis enviados
@@ -81,6 +107,25 @@ bool cVuelo::CambiarPasajero(string DNI_1, string DNI_2) //el 1 es el actual y e
 
 float cVuelo::PesoVuelo()
 {
+	return false;
+}
+
+bool cVuelo::EliminarPasajero(string DNI)
+{
+	for (int i = 0; i < cantpasajeros; i++)
+	{
+		if (listaPasajerosVuelo[i]->DNI == DNI)
+		{
+			//el pasajero existe en la lista de pasajeros del vuelo entonces:
+			listaPasajerosVuelo[i] == NULL; //vaciamos la posición de memoria donde se encuentra
+			for (int j = i; j < cantpasajeros; j++)
+			{
+				listaPasajerosVuelo[j] = listaPasajerosVuelo[j + 1];
+			}
+			return true;
+			break;
+		}
+	}
 	return false;
 }
 
