@@ -29,6 +29,8 @@ private: //metodos:
 	//void setVuelo(cVuelo* _vuelo); //LLAMA A AGREGAR PASAJERO y modifica numero de vuelo y fecha
 		//si en vez de un set vuelo, hacemos friend class a vuelo y que este mismo lo modifique directamente?
 		//en ese caso no va a ser necesario el puntero a vuelo
+	void ImprimirDatos();
+	string toString();
 	
 };
 
