@@ -21,7 +21,7 @@ private:
 	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
 	cListaPasajeros* listaPasajeros; //puntero simple ya que apunta a la lista
 	cPasajero** listaPasajerosVuelo; // lista de todos los pasajeros en el vuelo
-	cPasajero* pasajeroVuelo; // de tipo lista?
+	cPasajero* pasajeroVuelo; 
 	cPasajero* pasajeroCambio; // para el cambio de pasajeros 
 	cListaValija* listaValijas; //lista de valijas totales 
 	cValija** listaValijasVuelo; //lista de valijas en el vuelo
