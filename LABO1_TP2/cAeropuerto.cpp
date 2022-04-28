@@ -1,4 +1,8 @@
 #include "cAeropuerto.h"
+bool cAeropuerto::darPermiso()
+{
+	return false;
+}
 void cAeropuerto::ImprimirDatos()
 {
 	cout << this->toString() << endl;

@@ -14,6 +14,7 @@ private:
 	cVuelo* ListaVuelosEnAerop = new cVuelo[CapacidadTotal];//hacer delete
 
 public:
+	bool darPermiso();
 	void ImprimirDatos();
 	string toString();
 };

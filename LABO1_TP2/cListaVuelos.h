@@ -10,6 +10,7 @@ class cListaVuelos
 	int ca;
 
 public:
+	friend class cAvion;
 	cListaVuelos(int L = MAX);
 	~cListaVuelos();
 	bool Agregar(cVuelo* Vuelo);
