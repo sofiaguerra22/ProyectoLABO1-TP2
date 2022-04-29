@@ -80,6 +80,20 @@ cVuelo* cListaVuelos::operator[](int posic_i) //HACER
 	return nullptr;
 }
 
+cVuelo* cListaVuelos::VueloEncontrado(int ID)
+{
+	int pos = Buscar(ID);
+	if (pos = !- 1)
+	{
+		cVuelo* aux = ListaVuelos[pos];
+		return aux;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
 int cListaVuelos::Buscar(int ID)
 {
 	for (int i = 0; i < ca; i++)

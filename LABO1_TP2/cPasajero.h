@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include "cListaValija.h"
 #include "cValija.h"
 //#include "cVuelo.h"
 using namespace std;
@@ -17,18 +18,14 @@ public: //atributos:
 	bool equipaje; // si tiene equipaje o no
 	long int fecha;
 	float acumpeso; // pesototal; //peso total de las valijas
-	//cVuelo* vuelo;
-	cValija** valijas; //lista de valijas
-
+	cListaValija* valijas; //lista de valijas
+	cValija* valija; 
 
 private: //metodos:
 	cPasajero(string _DNI);
 	~cPasajero();
 	bool AgregarEquipaje(float peso);
 	float PesoTotal(); //suma el peso del pasajero (75kg) con sus valijas 
-	//void setVuelo(cVuelo* _vuelo); //LLAMA A AGREGAR PASAJERO y modifica numero de vuelo y fecha
-		//si en vez de un set vuelo, hacemos friend class a vuelo y que este mismo lo modifique directamente?
-		//en ese caso no va a ser necesario el puntero a vuelo
 	void ImprimirDatos();
 	string toString();
 	

@@ -100,6 +100,27 @@ int cListaPasajeros::Buscar(string _DNI) //CONSULTAR
 	return -1;
 }
 
+void cListaPasajeros::AgregarEnPos(int pos, cPasajero* pasajero)
+{
+	ListaPasajeros[pos] = NULL;
+	ListaPasajeros[pos] = pasajero;
+}
+
 void cListaPasajeros::Listar() //HACER
 {
+}
+
+cPasajero* cListaPasajeros::PasajeroEncontrado(string DNI)
+{
+	if (Buscar(DNI) != -1)
+	{
+		int pos = Buscar(DNI);
+		cPasajero* aux = ListaPasajeros[pos];
+		return aux;
+	}
+	else
+	{
+		return nullptr;
+	}
+
 }

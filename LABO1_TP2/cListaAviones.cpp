@@ -1,6 +1,6 @@
 #include "cListaAviones.h"
 
-cListaAviones::cListaAviones(int L)
+cListaAviones::cListaAviones(unsigned int L)
 {
 	//inicializamos todos los punteros de la lista a null
 	ListaAviones = new cAvion * [MAX];

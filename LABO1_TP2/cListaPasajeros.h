@@ -18,13 +18,15 @@ public:
 	cListaPasajeros(); //Cosntructor que no recibe parámetros
 	cListaPasajeros(int L = MAX);
 	~cListaPasajeros();
-	cPasajero** getListaPasajeros(); //CONSULTAR
+	//cPasajero** getListaPasajeros(); //CONSULTAR
 	bool Agregar(cPasajero* Pasajero);
 	cPasajero* Quitar(int pos);
 	bool Eliminar(int pos);
 	cPasajero* operator[](int posic_i);
 	int Buscar(string _DNI);
+	void AgregarEnPos(int pos, cPasajero* pasajero);
 	void Listar(); //imprime la lista en pantalla
+	cPasajero* PasajeroEncontrado(string DNI);
 	int getCA() { return ca; };
 	friend class cVuelo;
 };

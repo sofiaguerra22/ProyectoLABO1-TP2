@@ -16,6 +16,7 @@ public:
 	cVuelo* Quitar(int pos);
 	bool Eliminar(int pos);
 	cVuelo* operator[](int posic_i);
+	cVuelo* VueloEncontrado(int ID);
 	int Buscar(int ID); //recibe el id del vuelo
 	void Listar(); //imprime la lista en pantalla
 	friend class cAvion;

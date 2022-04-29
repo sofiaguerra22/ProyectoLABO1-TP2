@@ -2,48 +2,30 @@
 
 cPasajero::cPasajero(string _DNI)
 {
-	for (int i = 0; i < maxvalijas; i++)
-	{
-		valijas[i] = NULL; //incializamos todas los punteros de valijas a NULL
-	}
+
+	valijas = new cListaValija(); //cómo se inicializa?
 	equipaje = false;
 	numerovuelo = -1; //cuando el numero de vuelo es -1 es porque todavia no se le asigno
 	asiento = -1; //cuando el asiento es -1 es porque todaia no fue asigando
 	DNI = _DNI;
 	fecha = 0;
 	acumpeso = 0;// pesototal = 0;
+	valija = NULL;
 }
 cPasajero::~cPasajero()
 {
-	/*if (vuelo != NULL)
-		vuelo = NULL;
-	for (int i = 0; i < maxvalijas; i++)
-	{
-		if (valijas[i] != NULL)
-			valijas[i] = NULL;
-	}*/
-	
-	for (int i = 0; i < maxvalijas; i++)
-	{
-		if (valijas[i] != NULL)
-		{
-			delete valijas[i]; //valijas[i] = NULL; NO ESTOY SEGURA SI VA DELETE POR EL METODO AGREGAR EQUIPAJE CONSULTAR
-		}
-	}
+	delete valijas;
 
 }
 
-bool cPasajero::AgregarEquipaje(float peso)
+bool cPasajero::AgregarEquipaje(float peso) //VER TEMA DE PASAR COMO PARÁMETRO LA LISTA COMPLETA Y TRY CATCH
 {
-	for (int i = 0; i < maxvalijas; i++) //itera hasta la cantidad de valijas permitidas
+	if (acumpeso + peso <= 25)
 	{
-		if (valijas[i] == NULL && (acumpeso + peso) <= 25) //se fija que el puntero este vacío y que al sumar la valija no se supere el peso
-		{
-			acumpeso = acumpeso + peso;
-			valijas[i] = new cValija(peso, DNI);
-			valijas[i]->AgregarValijaLista(); //agrega la valija a la lista
-			return true; //devuelve true si hay espacio y pudo agregarse la valija
-		}
+		valija = new cValija(peso, DNI);
+		valijas->Agregar(valija);
+		acumpeso = acumpeso + peso;
+		return true; 
 	}
 	return false; //devuelve false si no hay mas espacio para valijas o el peso supera los 25kg
 }

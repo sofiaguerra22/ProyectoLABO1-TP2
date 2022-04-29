@@ -12,8 +12,8 @@ class cListaValija
 	int ca;
 
 public:
-	cListaValija(); //dos constructores uno por parámetro y otro vacío
 	cListaValija(float _peso, string _DNI);
+	cListaValija(); //dos constructores uno por parámetro y otro vacío
 	~cListaValija();
 	bool Agregar(cValija* Valija);
 	cValija* Quitar(int pos);

@@ -16,7 +16,7 @@ private:
 	//atributos para las estadísticas, cant vuelos que desp o aterri:
 	int cantPasajeros, cantVuelos;
 	float cantOnTime, porcentajeOnTime;
-	//cAvion** ListaAvionesEnAerop;
+	cListaAviones* ListaAvionesEnAerop;
 	//cVuelo** ListaVuelosEnAerop;
 	cListaAviones* ListaAviones;
 	cListaVuelos* ListaVuelos;

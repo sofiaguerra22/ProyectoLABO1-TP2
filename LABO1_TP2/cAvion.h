@@ -20,6 +20,7 @@ private:
 public:
 	cAvion(int _ID, int _pasajerosmax, float _pesomax);
 	~cAvion();
+	bool AsignarVuelo(cListaVuelos* listaVuelosTotal, int ID);
 	void Despegar();
 	void Aterrizar();
 	void PedirPermiso();

@@ -10,6 +10,7 @@ cAeropuerto::cAeropuerto(int _capacidadmax, int _ID)
 	cantVuelos = 0;
 	cantOnTime = 0;
 	porcentajeOnTime = 0;
+	//ListaAviones = ListaAviones->getLista();
 	//falta inicializar los punteros pero sigo c las dudas para ezequiel
 }
 cAeropuerto::~cAeropuerto() //HACER
@@ -19,7 +20,7 @@ cAeropuerto::~cAeropuerto() //HACER
 bool cAeropuerto::AgregarAvion(cAvion*Avion) // agrega los aviones a una lista de registro de los aviones que pasaron por el aeropuerto
 // para así facilitar luego la función estadísticas (además no pidieron un quitar)
 {
-	ListaAviones+(Avion);//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
+	ListaAviones->operator+(Avion);//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
 }
 void cAeropuerto::Estadisticas()
 {

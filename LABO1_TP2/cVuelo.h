@@ -18,22 +18,21 @@ private:
 	float pesoVuelo;
 	float onTime; //cant de veces que salieron o llegaron a tiempo, float para después servir en el porcentaje
 	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
-	cListaPasajeros* listaPasajeros; //puntero simple ya que apunta a la lista
-	cPasajero** listaPasajerosVuelo; // lista de todos los pasajeros en el vuelo
-	cPasajero* pasajeroVuelo; 
-	cPasajero* pasajeroCambio; // para el cambio de pasajeros 
-	cListaValija* listaValijas; //lista de valijas totales 
-	cValija** listaValijasVuelo; //lista de valijas en el vuelo
+	cListaPasajeros* listaPasajerosVuelo; //puntero simple ya que apunta a la lista
+	cPasajero* PasajeroVuelo; // lista de todos los pasajeros en el vuelo
+	cPasajero* PasajeroCambio; // para el cambio de pasajeros 
+	cListaValija* listaValijasVuelo; //lista de valijas en vuelo
+	cValija* valija;
 	eDestino destino; //enum de destinos
 	cAvion* avion; 
-	cListaValija* valija; //lista de valijas
+
 
 public:
 	cVuelo();
 	~cVuelo();
-	bool AgregarPasajero(string DNI);
+	bool AgregarPasajero(string DNI, cListaPasajeros* listaTotal);
 	void ObtenerDatos(string DNI);
-	bool CambiarPasajero(string DNI_1, string DNI_2); //el 1 es el actual y el 2 es el nuevo pasajero
+	bool CambiarPasajero(string DNI_1, string DNI_2, cListaPasajeros* listaTotal); //el 1 es el actual y el 2 es el nuevo pasajero
 	float PesoVuelo();
 	bool EliminarPasajero(string DNI);
 	bool setFechas(long int fecha_a, long int fecha_p); //recibe fecha de arribo y fecha de partida

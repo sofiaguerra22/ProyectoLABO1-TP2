@@ -11,11 +11,16 @@ cAvion::cAvion(int _ID, int _pasajerosmax, float _pesomax)
 	vuelo = NULL;
 	aeropuerto = NULL;
 	permiso = false;
-	listaVuelos = new cListaVuelos(); //CONSULTAR AL IGUAL QUE EN CONSTRUCTOR DE VUELO
+	listaVuelos = new cListaVuelos(); 
 }
 cAvion::~cAvion()
 {
 
+}
+
+bool cAvion::AsignarVuelo(cListaVuelos* listaVuelosTotal, int ID)
+{
+	return false;
 }
 
 void cAvion::Despegar()
