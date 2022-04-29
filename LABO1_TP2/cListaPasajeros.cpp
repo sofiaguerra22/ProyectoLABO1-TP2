@@ -46,8 +46,7 @@ cPasajero* cListaPasajeros::Quitar(int pos)
 		cout << "Posicion incorrecta o desocupada";
 		return NULL;
 	}
-	else
-	{
+
 		ca--; //disminuimos la cantidad actual
 		cPasajero* aux = ListaPasajeros[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
 		for (int i = pos; i < ca; i++)
@@ -56,7 +55,6 @@ cPasajero* cListaPasajeros::Quitar(int pos)
 		}
 		ListaPasajeros[pos] = NULL; //quitamos el puntero
 		return aux; //devolvemos el auxiliar creado
-	}
 
 }
 
@@ -77,7 +75,7 @@ bool cListaPasajeros::Eliminar(int pos)
 }
 
 
-int cListaPasajeros::Buscar(string _DNI) //CONSULTAR
+int cListaPasajeros::Buscar(string _DNI) 
 {
 	for (int i = 0; i < ca; i++)
 	{

@@ -12,12 +12,11 @@ class cAeropuerto
 {
 
 private:
-	int CapacidadActual, CapacidadMax, ID_Aeropuerto, tam; //tam=tamaño lista de Vuelos y Aviones 
+	int CapacidadActual, CapacidadMax, cantAviones, ID_Aeropuerto; //tam=tamaño lista de Vuelos y Aviones 
 	//atributos para las estadísticas, cant vuelos que desp o aterri:
 	int cantPasajeros, cantVuelos;
 	float cantOnTime, porcentajeOnTime;
-	cListaAviones* ListaAvionesEnAerop;
-	//cVuelo** ListaVuelosEnAerop;
+
 	cListaAviones* ListaAviones;
 	cListaVuelos* ListaVuelos;
 

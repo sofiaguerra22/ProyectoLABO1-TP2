@@ -33,16 +33,13 @@ cListaValija::~cListaValija() //CONSULTAR
 
 bool cListaValija::Agregar(cValija* Valija)
 {
-	for (int i = ca; i < MAX; i++) //recorre desde la cantidad actual de punteros hasta el final de la lista hasta buscar un espacio libre
+	if (Valija != NULL)
 	{
-		if (ListaValija[i] == NULL)
-		{
-			ListaValija[i] = Valija;
-			return true;
-			break;
-		}
+		ListaValija[ca] = Valija;
+		ca++;
+		return true;
 	}
-	return false; //devuelve falso si no hay espacio diponible (se puede redimensionar)
+	return false;
 }
 
 cValija* cListaValija::Quitar(int pos)

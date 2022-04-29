@@ -27,16 +27,13 @@ cListaAviones::~cListaAviones() //HACER:
 
 bool cListaAviones::Agregar(cAvion* Avion)
 {
-	for (int i = ca; i < MAX; i++) //recorre desde la cantidad actual de punteros hasta el final de la lista hasta buscar un espacio libre
+	if (Avion != NULL)
 	{
-		if (ListaAviones[i] = NULL)
-		{
-			ListaAviones[i] = Avion;
-			return true;
-			break;
-		}
+		ListaAviones[ca] = Avion;
+		ca++;
+		return true;
 	}
-	return false; //devuelve falso si no hay espacio diponible (se puede redimensionar)
+	return false;
 }
 
 void cListaAviones::operator+(cAvion* newAvion)
@@ -54,8 +51,8 @@ cAvion* cListaAviones::Quitar(int pos)
 		cout << "Posicion incorrecta o desocupada";
 		return NULL;
 	}
-	else
-	{
+	
+
 		ca--; //disminuimos la cantidad actual
 		cAvion* aux = ListaAviones[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
 		for (int i = pos; i < ca; i++) 
@@ -64,7 +61,6 @@ cAvion* cListaAviones::Quitar(int pos)
 		}
 		ListaAviones[pos] = NULL; //quitamos el puntero
 		return aux; //devolvemos el auxiliar creado
-	}
 	
 }
 
@@ -108,4 +104,14 @@ void cListaAviones::Listar() //HACER
 	{
 		ListaAviones[i]->toString();
 	}
+}
+
+int cListaAviones::PasajerosTotal()
+{
+	float pesoTotal = 0;
+	for (int i = 0; i < ca; i++)
+	{
+		pesoTotal = pesoTotal + ListaAviones[i]->getCantPasajeros();
+	}
+	return pesoTotal;
 }

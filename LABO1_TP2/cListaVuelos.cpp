@@ -25,18 +25,16 @@ cListaVuelos::~cListaVuelos()
 	}
 }
 
-bool cListaVuelos::Agregar(cVuelo* Vuelo)
+bool cListaVuelos::operator+(cVuelo* Vuelo)
 {
-	for (int i = ca; i < MAX; i++) //recorre desde la cantidad actual de punteros hasta el final de la lista hasta buscar un espacio libre
+	if (Vuelo != NULL)
 	{
-		if (ListaVuelos[i] = NULL)
-		{
-			ListaVuelos[i] = Vuelo;
-			return true;
-			break;
-		}
+		ListaVuelos[ca] = Vuelo;
+		ca++;
+		return true;
 	}
-	return false; //devuelve falso si no hay espacio diponible (se puede redimensionar)
+		return false;
+
 }
 
 cVuelo* cListaVuelos::Quitar(int pos)
@@ -46,8 +44,7 @@ cVuelo* cListaVuelos::Quitar(int pos)
 		cout << "Posicion incorrecta o desocupada";
 		return NULL;
 	}
-	else
-	{
+	
 		ca--; //disminuimos la cantidad actual
 		cVuelo* aux = ListaVuelos[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
 		for (int i = pos; i < ca; i++)
@@ -56,7 +53,6 @@ cVuelo* cListaVuelos::Quitar(int pos)
 		}
 		ListaVuelos[pos] = NULL; //quitamos el puntero
 		return aux; //devolvemos el auxiliar creado
-	}
 }
 
 bool cListaVuelos::Eliminar(int pos)
@@ -75,23 +71,15 @@ bool cListaVuelos::Eliminar(int pos)
 	}
 }
 
-cVuelo* cListaVuelos::operator[](int posic_i) //HACER
-{
-	return nullptr;
-}
-
 cVuelo* cListaVuelos::VueloEncontrado(int ID)
 {
 	int pos = Buscar(ID);
-	if (pos = !- 1)
+	if (pos =!- 1)
 	{
 		cVuelo* aux = ListaVuelos[pos];
 		return aux;
 	}
-	else
-	{
-		return nullptr;
-	}
+		return NULL;
 }
 
 int cListaVuelos::Buscar(int ID)
@@ -100,15 +88,24 @@ int cListaVuelos::Buscar(int ID)
 	{
 		if (ListaVuelos[i]->getNumeroVuelo() == ID);
 		return i;
-		break;
 	} 
 	return -1;
 }
 
-void cListaVuelos::Listar() //HACER
+void cListaVuelos::Listar() 
 {
 	for (int i = 0; i < ca; i++)
 	{
 		ListaVuelos[i]->toString(); //imprime todos los vuelos en la lista
 	}
+}
+
+float cListaVuelos::CantidadOnTime()
+{
+	float cant = 0;
+	for (int i = 0; i < ca; i++)
+	{
+		cant = cant + ListaVuelos[i]->getOnTime();
+	}
+	return cant;
 }
