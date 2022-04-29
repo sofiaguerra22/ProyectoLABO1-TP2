@@ -42,7 +42,7 @@ int main()
 		*ListaAviones + avion1;
 		*ListaAviones + avion2;
 
-
+		//agregar deletes 
 
 
 
