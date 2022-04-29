@@ -39,6 +39,14 @@ bool cListaAviones::Agregar(cAvion* Avion)
 	return false; //devuelve falso si no hay espacio diponible (se puede redimensionar)
 }
 
+void cListaAviones::operator+(cAvion* newAvion)
+{
+	if (this->ListaAviones[ca] != NULL) {
+		throw new exception;
+	}
+	this->ListaAviones[ca] = newAvion;
+}
+
 cAvion* cListaAviones::Quitar(int pos)
 {
 	if (pos >= ca || ListaAviones[pos] == NULL) //no existe tal pos o el puntero a esa posición esta desocupado

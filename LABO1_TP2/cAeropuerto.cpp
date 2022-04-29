@@ -15,17 +15,11 @@ cAeropuerto::cAeropuerto(int _capacidadmax, int _ID)
 cAeropuerto::~cAeropuerto() //HACER
 {
 }
-bool cAeropuerto::AgregarAvion(int ID) // agrega los aviones a una lista de registro de los aviones que pasaron por el aeropuerto
+//
+bool cAeropuerto::AgregarAvion(cAvion*Avion) // agrega los aviones a una lista de registro de los aviones que pasaron por el aeropuerto
 // para así facilitar luego la función estadísticas (además no pidieron un quitar)
 {
-	if (ListaAviones->Buscar(ID) != -1)
-	{
-		ListaAvionesEnAerop[tam]; //aca quiero igualarlo al puntero de la lista en la posición de buscar id pero como es punterosimple no puedo
-		tam++;
-		CapacidadActual++;
-		ListaVuelosEnAerop[tam]; //acá hay que llenar con igualarlo al avión que apunta el vuelo, esto sé que se podría hacer menos complicado
-			//pero como piden una lista de los vuelos y una lista de los aviones no sé :(
-	}
+	ListaAviones->operator+(Avion);//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
 }
 void cAeropuerto::Estadisticas()
 {
