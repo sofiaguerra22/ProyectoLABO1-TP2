@@ -81,14 +81,23 @@ cAvion* cListaAviones::operator[](int posic_i) //HACER
 	return nullptr;
 }
 
-int cListaAviones::Buscar(string ID) //CONSULTAR
+int cListaAviones::Buscar(int ID) 
 {
 	for (int i = 0; i < ca; i++)
 	{
-		if (ListaAviones[i]);
+		if (ListaAviones[i]->getID() == ID)
+		{
+			return i;
+			break;
+		}
 	}
+	return -1;
 }
 
 void cListaAviones::Listar() //HACER
 {
+	for (int i = 0; i < ca; i++)
+	{
+		ListaAviones[i]->toString();
+	}
 }

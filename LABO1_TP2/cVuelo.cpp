@@ -10,8 +10,7 @@ cVuelo::cVuelo()
 	cantpasajeros = 0;
 	numeroVuelo++; //CONSULTAR
 	pesoVuelo = 0.0;
-	onTimeArribo = false;
-	onTimePartida = false;
+	onTime = 0;
 	fechaArribo, fechaPartida, horaArribo, horaPartida = 0;
 	listaPasajerosVuelo = NULL;
 	avion = NULL;
@@ -161,64 +160,65 @@ bool cVuelo::setHorarios(long int hora_a, long int hora_p)
 
 }
 
-int cVuelo::ChequearOnTimePartida(long int horaActual, long int fechaActual) //devuelve 0 si la fecha u horario no son válidos, 1 si salió a tiempo, 2 si se retrasó
+bool cVuelo::ChequearOnTimePartida(long int horaActual, long int fechaActual) //devuelve false so la fecha u horario son inválidos
 {
 	if (fechaActual > 31120000 || fechaActual < 0 || horaActual>2359 || horaActual < 0)
 	{
 		cout << "Fecha u horario no valido" << endl;
-		return 0;
+		return false;
 	}
 	else
 	{
 		if (fechaActual != fechaPartida)
 		{
-			onTimePartida = false;
-			return 2;
+			return true;
 		}
 		else
 		{
 			if (horaActual != horaPartida)
 			{
-				onTimePartida = false;
-				return 2;
+				return true;
 			}
 			else
 			{
-				onTimePartida = true;
-				return 1;
+				onTime++; 
+				return true;
 			}
 		}
 	}
 }
 
-int cVuelo::ChequearOnTimeArribo(long int horaActual, long int fechaActual)
+bool cVuelo::ChequearOnTimeArribo(long int horaActual, long int fechaActual) // devuelve false si la fecha u horario son inválidos
 {
 	if (fechaActual > 31120000 || fechaActual < 0 || horaActual>2359 || horaActual < 0)
 	{
 		cout << "Fecha u horario no valido" << endl;
-		return 0;
+		return false;
 	}
 	else
 	{
 		if (fechaActual != fechaArribo)
 		{
-			onTimeArribo = false;
-			return 2;
+			return true;
 		}
 		else
 		{
 			if (horaActual != horaArribo)
 			{
-				onTimeArribo = false;
-				return 2;
+				return true;
 			}
 			else
 			{
-				onTimeArribo = true;
-				return 1;
+				onTime++;
+				return true;
 			}
 		}
 	}
+}
+
+float cVuelo::getOnTime()
+{
+	return onTime;
 }
 
 void cVuelo::ImprimirDatos()

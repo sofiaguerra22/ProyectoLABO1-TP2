@@ -10,7 +10,6 @@ class cListaVuelos
 	int ca;
 
 public:
-	friend class cAvion;
 	cListaVuelos(int L = MAX);
 	~cListaVuelos();
 	bool Agregar(cVuelo* Vuelo);
@@ -19,5 +18,7 @@ public:
 	cVuelo* operator[](int posic_i);
 	int Buscar(int ID); //recibe el id del vuelo
 	void Listar(); //imprime la lista en pantalla
+	friend class cAvion;
+	friend class cAeropuerto;
 };
 

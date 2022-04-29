@@ -7,7 +7,6 @@ constexpr auto MAX = 100;
 
 class cListaPasajeros
 {
-	friend class cVuelo;
 
 private:
 	cPasajero** ListaPasajeros;
@@ -26,6 +25,6 @@ public:
 	cPasajero* operator[](int posic_i);
 	int Buscar(string _DNI);
 	void Listar(); //imprime la lista en pantalla
-	friend class cVuelo;
 	int getCA() { return ca; };
+	friend class cVuelo;
 };

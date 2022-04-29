@@ -16,8 +16,7 @@ class cVuelo
 private:
 	int cantpasajeros, numeroVuelo;
 	float pesoVuelo;
-	bool onTimeArribo; //a tiempo o retrasado
-	bool onTimePartida;
+	float onTime; //cant de veces que salieron o llegaron a tiempo, float para después servir en el porcentaje
 	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
 	cListaPasajeros* listaPasajeros; //puntero simple ya que apunta a la lista
 	cPasajero** listaPasajerosVuelo; // lista de todos los pasajeros en el vuelo
@@ -39,10 +38,12 @@ public:
 	bool EliminarPasajero(string DNI);
 	bool setFechas(long int fecha_a, long int fecha_p); //recibe fecha de arribo y fecha de partida
 	bool setHorarios(long int hora_a, long int hora_p);
-	int ChequearOnTimePartida(long int horaActual, long int fechaActual);
-	int ChequearOnTimeArribo(long int horaActual, long int fechaActual);
+	bool ChequearOnTimePartida(long int horaActual, long int fechaActual);
+	bool ChequearOnTimeArribo(long int horaActual, long int fechaActual);
+	float getOnTime();
 	void ImprimirDatos();
 	string toString();
 	int getNumeroVuelo() { return numeroVuelo; };
+	int getPesoVuelo() { return pesoVuelo; };
 };
 

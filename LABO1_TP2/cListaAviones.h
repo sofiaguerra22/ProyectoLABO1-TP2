@@ -18,7 +18,8 @@ public:
 	cAvion* Quitar(int pos);
 	bool Eliminar(int pos);
 	cAvion* operator[](int posic_i);
-	int Buscar(string ID);
+	int Buscar(int ID);
 	void Listar(); //imprime la lista en pantalla
+	friend class cAeropuerto; // para que pueda acceder a la lista de aviones y sus atributos
 };
 
