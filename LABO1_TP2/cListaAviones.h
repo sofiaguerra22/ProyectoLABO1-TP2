@@ -15,6 +15,7 @@ public:
 	cListaAviones(int L = MAX);
 	~cListaAviones();
 	bool Agregar(cAvion* Avion);
+	void operator+(cAvion* newAvion);
 	cAvion* Quitar(int pos);
 	bool Eliminar(int pos);
 	cAvion* operator[](int posic_i);
