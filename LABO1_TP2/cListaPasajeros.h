@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string>
 #include "cPasajero.h"
-constexpr auto MAX = 100;
 
 class cListaPasajeros
 {
@@ -15,15 +14,13 @@ private:
 	int ca;
 
 public:
-	cListaPasajeros(); //Cosntructor que no recibe parámetros
-	cListaPasajeros(int L = MAX);
+	cListaPasajeros(int L);
 	~cListaPasajeros();
-	//cPasajero** getListaPasajeros(); //CONSULTAR
-	bool Agregar(cPasajero* Pasajero);
+	bool operator+(cPasajero* Pasajero);
 	cPasajero* Quitar(int pos);
 	bool Eliminar(int pos);
-	cPasajero* operator[](int posic_i);
 	int Buscar(string _DNI);
+	int Buscar(cPasajero* pasajero);
 	void AgregarEnPos(int pos, cPasajero* pasajero);
 	void Listar(); //imprime la lista en pantalla
 	cPasajero* PasajeroEncontrado(string DNI);

@@ -3,7 +3,7 @@
 cPasajero::cPasajero(string _DNI)
 {
 
-	valijas = new cListaValija(); //cómo se inicializa?
+	valijas = new cListaValija(); 
 	equipaje = false;
 	numerovuelo = -1; //cuando el numero de vuelo es -1 es porque todavia no se le asigno
 	asiento = -1; //cuando el asiento es -1 es porque todaia no fue asigando
@@ -18,7 +18,7 @@ cPasajero::~cPasajero()
 
 }
 
-bool cPasajero::AgregarEquipaje(float peso) //VER TEMA DE PASAR COMO PARÁMETRO LA LISTA COMPLETA Y TRY CATCH
+bool cPasajero::AgregarEquipaje(float peso) //Y TRY CATCH
 {
 	if (acumpeso + peso <= 25)
 	{
@@ -35,11 +35,6 @@ float cPasajero::PesoTotal()
 	return acumpeso + 75;
 }
 
-/*void cPasajero::setVuelo(cVuelo* _vuelo) //COMPLETAR
-{
-
-	
-}*/
 void cPasajero::ImprimirDatos()
 {
 	cout << this->toString() << endl;

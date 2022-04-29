@@ -27,17 +27,12 @@ cVuelo::~cVuelo() //completar el destructor
 	
 }
 
-bool cVuelo::AgregarPasajero(string DNI, cListaPasajeros* listaTotal) //CONSULTAR
+bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al pasajero a agregar LLA,AR EN EL MAIN AL TRY CATCH
 {
-	if (listaTotal->PasajeroEncontrado(DNI) != nullptr)
-	{
-		listaPasajerosVuelo->Agregar(listaTotal->PasajeroEncontrado(DNI));
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+
+	if (pasajero_vuelo == NULL)
+		throw new exception();//llenar
+	*listaPasajerosVuelo + pasajero_vuelo;//consultar!!!
 
 }
 
@@ -47,15 +42,18 @@ void cVuelo::ObtenerDatos(string DNI)
 	if (pos != -1)
 	{
 		PasajeroVuelo = listaPasajerosVuelo->PasajeroEncontrado(DNI);
-		{
 			PasajeroVuelo->toString();
-		}
 	}
 
 }
 
-bool cVuelo::CambiarPasajero(string DNI_1, string DNI_2, cListaPasajeros* listaTotal) //el 1 es el actual y el 2 es el nuevo pasajero
+bool cVuelo::CambiarPasajero(cPasajero* PasajeroVuelo, cPasajero* PasajeroCambio) //TRY CATCH EN MAIN
 {
+	if(PasajeroVuelo != NULL || PasajeroCambio != NULL)
+		throw exception(); //completar
+	
+	int pos=listaPasajerosVuelo->Buscar
+	cPasajero* aux=listaPasajerosVuelo->PasajeroEncontrado()
 	PasajeroVuelo = listaPasajerosVuelo->PasajeroEncontrado(DNI_1);
 	PasajeroCambio = listaTotal->PasajeroEncontrado(DNI_2);
 	if (PasajeroVuelo != nullptr && PasajeroCambio != nullptr)

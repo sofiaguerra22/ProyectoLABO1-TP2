@@ -1,10 +1,7 @@
 #include "cListaPasajeros.h"
 
-cListaPasajeros::cListaPasajeros()
-{
-}
 
-cListaPasajeros::cListaPasajeros(int L)
+cListaPasajeros::cListaPasajeros(int L = MAX)
 {
 	peso = 0.0;
 	ca = 0;
@@ -25,24 +22,21 @@ cListaPasajeros::~cListaPasajeros() //CONSULTAR
 	}
 }
 
-cPasajero** cListaPasajeros::getListaPasajeros()
-{
-	return ListaPasajeros; 
-	
-}
 
-bool cListaPasajeros::Agregar(cPasajero* Pasajero)
+bool cListaPasajeros::operator+(cPasajero* Pasajero)
 {
-	for (int i = ca; i < MAX; i++) //recorre desde la cantidad actual de punteros hasta el final de la lista hasta buscar un espacio libre
+	if (Pasajero != NULL)
 	{
-		if (ListaPasajeros[i] == NULL)
-		{
-			ListaPasajeros[i] = Pasajero;
-			return true;
-			break;
-		}
+		ListaPasajeros[ca] = Pasajero;
+		ca++;
+		return true;
 	}
-	return false; //devuelve falso si no hay espacio diponible (se puede redimensionar)
+	else
+	{
+		return false;
+	}
+	
+
 }
 
 cPasajero* cListaPasajeros::Quitar(int pos)
@@ -82,19 +76,26 @@ bool cListaPasajeros::Eliminar(int pos)
 	}
 }
 
-cPasajero* cListaPasajeros::operator[](int posic_i) //HACER
-{
-	return nullptr;
-}
 
 int cListaPasajeros::Buscar(string _DNI) //CONSULTAR
 {
 	for (int i = 0; i < ca; i++)
 	{
-		if (DNI == _DNI)
+		if (ListaPasajeros[i]->DNI== _DNI)
 		{
 			return i;
-			break;
+		}
+	}
+	return -1;
+}
+
+int cListaPasajeros::Buscar(cPasajero* pasajero)
+{
+	for (int i = 0; i < ca; i++)
+	{
+		if (this->ListaPasajeros[i] == pasajero)
+		{
+			return i;
 		}
 	}
 	return -1;
