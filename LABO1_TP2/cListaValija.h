@@ -7,15 +7,12 @@
 class cListaValija
 {
 	cValija** ListaValija;
-	float peso;
-	string DNI;
 	int ca;
 
 public:
-	cListaValija(float _peso, string _DNI);
-	cListaValija(); //dos constructores uno por parámetro y otro vacío
+	cListaValija(int L);
 	~cListaValija();
-	bool Agregar(cValija* Valija);
+	bool operator+(cValija* Valija);
 	cValija* Quitar(int pos);
 	bool Eliminar(int pos);
 	cValija* operator[](int posic_i);

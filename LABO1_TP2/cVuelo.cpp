@@ -8,16 +8,16 @@
 cVuelo::cVuelo() 
 {
 	cantpasajeros = 0;
-	numeroVuelo++; //CONSULTAR
+	destino = "";
+	numeroVuelo = 0; //CONSULTAR
 	pesoVuelo = 0.0;
 	onTime = 0;
 	fechaArribo = new Fecha();
 	fechaPartida = new Fecha();
-	listaPasajerosVuelo = NULL;
 	avion = NULL;
 	valija = NULL;
 	listaValijasVuelo = new cListaValija();
-	listaPasajerosVuelo = new cListaPasajeros(maxpasajeros);
+	listaPasajerosVuelo = new cListaPasajeros(MAX);
 	PasajeroCambio = NULL;
 	PasajeroVuelo = NULL;
 
@@ -25,12 +25,18 @@ cVuelo::cVuelo()
 
 cVuelo::~cVuelo() //completar el destructor
 {
-	
+	delete fechaArribo;
+	delete fechaPartida;
+	delete listaValijasVuelo;
+	delete listaPasajerosVuelo;
+	PasajeroCambio = NULL;
+	PasajeroVuelo = NULL;
+	avion = NULL;
+	valija = NULL;
 }
 
 bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al pasajero a agregar LLA,AR EN EL MAIN AL TRY CATCH
 {
-
 	if (pasajero_vuelo == NULL)
 		throw new exception();//llenar
 	*listaPasajerosVuelo + pasajero_vuelo;
@@ -48,16 +54,16 @@ void cVuelo::ObtenerDatos(string DNI)
 
 }
 
-bool cVuelo::CambiarPasajero(cPasajero* PasajeroVuelo, cPasajero* PasajeroCambio) //TRY CATCH EN MAIN
+bool cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio) //TRY CATCH EN MAIN
 {
-	if(PasajeroVuelo != NULL || PasajeroCambio != NULL)
+	if(Pasajero_Vuelo != NULL || Pasajero_Cambio != NULL)
 		throw exception(); //completar
 	
-		int pos = listaPasajerosVuelo->Buscar(PasajeroVuelo->DNI); // buscamos la posición en la lista de vuelos del primer dni
-		PasajeroCambio->asiento = PasajeroVuelo->asiento;
-		PasajeroCambio->numerovuelo = PasajeroVuelo->numerovuelo;
-		pesoVuelo = pesoVuelo - PasajeroVuelo->PesoTotal() + PasajeroCambio->PesoTotal();
-		listaPasajerosVuelo->AgregarEnPos(pos, PasajeroCambio);  //preguntar 
+		int pos = listaPasajerosVuelo->Buscar(Pasajero_Vuelo->DNI); // buscamos la posición en la lista de vuelos del primer dni
+		Pasajero_Cambio->asiento = Pasajero_Vuelo->asiento;
+		Pasajero_Cambio->numerovuelo = Pasajero_Vuelo->numerovuelo;
+		pesoVuelo = pesoVuelo - Pasajero_Vuelo->PesoTotal() + Pasajero_Cambio->PesoTotal();
+		listaPasajerosVuelo->AgregarEnPos(pos, Pasajero_Cambio);  //preguntar 
 		return true;
 
 }

@@ -7,8 +7,6 @@
 class cListaAviones
 {
 	cAvion** ListaAviones;
-	float peso;
-	int ID;
 	int ca; //cantidad actual
 
 public:

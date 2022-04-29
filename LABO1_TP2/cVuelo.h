@@ -7,8 +7,6 @@
 #include "cListaPasajeros.h"
 #include "cPasajero.h" //friend class
 #include "Fecha.h"
-
-constexpr auto maxpasajeros = 100;//consultar
 class cAvion;
 using namespace std;
 class cVuelo

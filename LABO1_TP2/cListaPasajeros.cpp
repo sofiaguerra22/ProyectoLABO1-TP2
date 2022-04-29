@@ -3,7 +3,6 @@
 
 cListaPasajeros::cListaPasajeros(int L = MAX)
 {
-	peso = 0.0;
 	ca = 0;
 	//inicializamos todos los punteros de la lista a null
 	ListaPasajeros = new cPasajero * [MAX];

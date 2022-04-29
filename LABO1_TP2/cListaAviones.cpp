@@ -2,6 +2,7 @@
 
 cListaAviones::cListaAviones(unsigned int L)
 {
+	ca = 0;
 	//inicializamos todos los punteros de la lista a null
 	ListaAviones = new cAvion * [MAX];
 	for (int i = 0; i < L; i++)

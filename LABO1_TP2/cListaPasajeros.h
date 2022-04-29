@@ -9,8 +9,6 @@ class cListaPasajeros
 
 private:
 	cPasajero** ListaPasajeros;
-	float peso;
-	string DNI;
 	int ca;
 
 public:

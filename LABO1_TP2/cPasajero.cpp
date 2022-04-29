@@ -2,7 +2,6 @@
 
 cPasajero::cPasajero(string _DNI)
 {
-
 	valijas = new cListaValija(); 
 	equipaje = false;
 	numerovuelo = -1; //cuando el numero de vuelo es -1 es porque todavia no se le asigno
@@ -15,6 +14,7 @@ cPasajero::cPasajero(string _DNI)
 cPasajero::~cPasajero()
 {
 	delete valijas;
+	valija = NULL;
 
 }
 

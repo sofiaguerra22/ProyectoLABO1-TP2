@@ -13,7 +13,7 @@ cAeropuerto::cAeropuerto(int _capacidadmax, int _ID)
 	ListaAviones = new cListaAviones();
 	ListaVuelos = new cListaVuelos();
 }
-cAeropuerto::~cAeropuerto() //HACER
+cAeropuerto::~cAeropuerto() 
 {
 	delete ListaAviones;
 	delete ListaVuelos;

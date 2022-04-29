@@ -15,7 +15,9 @@ cAvion::cAvion(int _ID, int _pasajerosmax, float _pesomax)
 }
 cAvion::~cAvion()
 {
-
+	delete listaVuelos;
+	vuelo = NULL;
+	aeropuerto = NULL;
 }
 
 bool cAvion::AsignarVuelo(cVuelo* _Vuelo)
