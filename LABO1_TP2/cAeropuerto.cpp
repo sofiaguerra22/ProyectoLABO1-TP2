@@ -19,7 +19,7 @@ cAeropuerto::~cAeropuerto() //HACER
 bool cAeropuerto::AgregarAvion(cAvion*Avion) // agrega los aviones a una lista de registro de los aviones que pasaron por el aeropuerto
 // para así facilitar luego la función estadísticas (además no pidieron un quitar)
 {
-	ListaAviones->operator+(Avion);//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
+	ListaAviones+(Avion);//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
 }
 void cAeropuerto::Estadisticas()
 {
