@@ -4,14 +4,18 @@
 #include <string>
 #include "cAvion.h"
 #include "cVuelo.h"
+#include "cListaAviones.h"
+#include "cListaVuelos.h"
 using namespace std;
 
 class cAeropuerto
 {
 private:
 	int CapacidadActual, CapacidadTotal, ID_Aeropuerto;
-	cAvion* ListaAvionesEnAerop = new cAvion[CapacidadTotal];//hacer delete
-	cVuelo* ListaVuelosEnAerop = new cVuelo[CapacidadTotal];//hacer delete
+	cAvion** ListaAvionesEnAerop;
+	cVuelo** ListaVuelosEnAerop;
+	cListaAviones* ListaAviones;
+	cListaVuelos* ListaVuelos;
 
 public:
 	bool darPermiso();

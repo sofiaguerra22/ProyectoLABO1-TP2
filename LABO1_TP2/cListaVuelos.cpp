@@ -80,14 +80,21 @@ cVuelo* cListaVuelos::operator[](int posic_i) //HACER
 	return nullptr;
 }
 
-int cListaVuelos::Buscar(int clave)
+int cListaVuelos::Buscar(int ID)
 {
 	for (int i = 0; i < ca; i++)
 	{
-		if (ListaVuelos[i]);
-	}
+		if (ListaVuelos[i]->getNumeroVuelo() == ID);
+		return i;
+		break;
+	} 
+	return -1;
 }
 
 void cListaVuelos::Listar() //HACER
 {
+	for (int i = 0; i < ca; i++)
+	{
+		ListaVuelos[i]->toString(); //imprime todos los vuelos en la lista
+	}
 }

@@ -43,5 +43,6 @@ public:
 	int ChequearOnTimeArribo(long int horaActual, long int fechaActual);
 	void ImprimirDatos();
 	string toString();
+	int getNumeroVuelo() { return numeroVuelo; };
 };
 
