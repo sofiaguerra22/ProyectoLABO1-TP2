@@ -6,6 +6,7 @@
 #include "cListaValija.h"
 #include "cListaPasajeros.h"
 #include "cPasajero.h" //friend class
+#include "Fecha.h"
 
 constexpr auto maxpasajeros = 100;//consultar
 class cAvion;
@@ -17,7 +18,8 @@ private:
 	int cantpasajeros, numeroVuelo;
 	float pesoVuelo;
 	float onTime; //cant de veces que salieron o llegaron a tiempo, float para después servir en el porcentaje
-	long int fechaArribo, fechaPartida, horaArribo, horaPartida;
+	Fecha* fechaArribo;
+	Fecha* fechaPartida;
 	cListaPasajeros* listaPasajerosVuelo; //puntero simple ya que apunta a la lista
 	cPasajero* PasajeroVuelo; 
 	cPasajero* PasajeroCambio; // para el cambio de pasajeros 
@@ -32,13 +34,11 @@ public:
 	~cVuelo();
 	bool AgregarPasajero(cPasajero* pasajero_vuelo);
 	void ObtenerDatos(string DNI);
-	bool CambiarPasajero(string DNI_1, string DNI_2, cListaPasajeros* listaTotal); //el 1 es el actual y el 2 es el nuevo pasajero
-	float PesoVuelo();
+	bool CambiarPasajero(cPasajero* PasajeroVuelo, cPasajero* PasajeroCambio); //el 1 es el actual y el 2 es el nuevo pasajero
 	bool EliminarPasajero(string DNI);
-	bool setFechas(long int fecha_a, long int fecha_p); //recibe fecha de arribo y fecha de partida
-	bool setHorarios(long int hora_a, long int hora_p);
-	bool ChequearOnTimePartida(long int horaActual, long int fechaActual);
-	bool ChequearOnTimeArribo(long int horaActual, long int fechaActual);
+	bool setFechas(Fecha* fecha_a, Fecha* fecha_p); //recibe fecha de arribo y fecha de partida
+	bool ChequearOnTimePartida(Fecha* FechaActual);
+	bool ChequearOnTimeArribo(Fecha* FechaActual);
 	float getOnTime();
 	void ImprimirDatos();
 	string toString();

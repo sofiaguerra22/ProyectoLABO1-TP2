@@ -11,7 +11,8 @@ cVuelo::cVuelo()
 	numeroVuelo++; //CONSULTAR
 	pesoVuelo = 0.0;
 	onTime = 0;
-	fechaArribo, fechaPartida, horaArribo, horaPartida = 0;
+	fechaArribo = new Fecha();
+	fechaPartida = new Fecha();
 	listaPasajerosVuelo = NULL;
 	avion = NULL;
 	valija = NULL;
@@ -32,7 +33,7 @@ bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al p
 
 	if (pasajero_vuelo == NULL)
 		throw new exception();//llenar
-	*listaPasajerosVuelo + pasajero_vuelo;//consultar!!!
+	*listaPasajerosVuelo + pasajero_vuelo;
 
 }
 
@@ -52,29 +53,13 @@ bool cVuelo::CambiarPasajero(cPasajero* PasajeroVuelo, cPasajero* PasajeroCambio
 	if(PasajeroVuelo != NULL || PasajeroCambio != NULL)
 		throw exception(); //completar
 	
-	int pos=listaPasajerosVuelo->Buscar
-	cPasajero* aux=listaPasajerosVuelo->PasajeroEncontrado()
-	PasajeroVuelo = listaPasajerosVuelo->PasajeroEncontrado(DNI_1);
-	PasajeroCambio = listaTotal->PasajeroEncontrado(DNI_2);
-	if (PasajeroVuelo != nullptr && PasajeroCambio != nullptr)
-	{
-		int pos = listaPasajerosVuelo->Buscar(DNI_1); // buscamos la posición en la lista de vuelos del primer dni
+		int pos = listaPasajerosVuelo->Buscar(PasajeroVuelo->DNI); // buscamos la posición en la lista de vuelos del primer dni
 		PasajeroCambio->asiento = PasajeroVuelo->asiento;
 		PasajeroCambio->numerovuelo = PasajeroVuelo->numerovuelo;
 		pesoVuelo = pesoVuelo - PasajeroVuelo->PesoTotal() + PasajeroCambio->PesoTotal();
 		listaPasajerosVuelo->AgregarEnPos(pos, PasajeroCambio);  //preguntar 
 		return true;
-	}
-	else
-	{
-		return false;
-	}
-	
-}
 
-float cVuelo::PesoVuelo()
-{
-	return false;
 }
 
 bool cVuelo::EliminarPasajero(string DNI)
@@ -91,91 +76,35 @@ bool cVuelo::EliminarPasajero(string DNI)
 	}
 }
 
-bool cVuelo::setFechas(long int fecha_a, long int fecha_p)
+bool cVuelo::setFechas(Fecha* fecha_a, Fecha* fecha_p)
 {
-	if (fecha_a > 31120000 || fecha_p > 31120000 || fecha_a < 0 || fecha_p < 0)
-	{
-		cout << "fecha no valida" << endl; //la fecha de pasa del 31/12
-		return false;
-	}
-	else
+	if (fecha_a->esCorrecta() == true && fecha_p->esCorrecta() == true)
 	{
 		fechaArribo = fecha_a;
 		fechaPartida = fecha_p;
 		return true;
 	}
+	return false;
 }
 
-bool cVuelo::setHorarios(long int hora_a, long int hora_p)
+bool cVuelo::ChequearOnTimePartida(Fecha* FechaActual) //devuelve false so la fecha u horario son inválidos
 {
-	if (hora_a > 2359 || hora_p > 2359 || hora_a < 0 || hora_p < 0)
+	if (FechaActual->esCorrecta() == true && fechaPartida->Comparar(FechaActual))
 	{
-		cout << "horario no valido" << endl;
-		return false;
-	}
-	else
-	{
-		horaArribo = hora_a;
-		horaPartida = hora_p;
+		onTime++;
 		return true;
 	}
-
+	return false;
 }
 
-bool cVuelo::ChequearOnTimePartida(long int horaActual, long int fechaActual) //devuelve false so la fecha u horario son inválidos
+bool cVuelo::ChequearOnTimeArribo(Fecha* FechaActual) // devuelve false si la fecha u horario son inválidos
 {
-	if (fechaActual > 31120000 || fechaActual < 0 || horaActual>2359 || horaActual < 0)
+	if (FechaActual->esCorrecta() == true && fechaArribo->Comparar(FechaActual))
 	{
-		cout << "Fecha u horario no valido" << endl;
-		return false;
+		onTime++;
+		return true;
 	}
-	else
-	{
-		if (fechaActual != fechaPartida)
-		{
-			return true;
-		}
-		else
-		{
-			if (horaActual != horaPartida)
-			{
-				return true;
-			}
-			else
-			{
-				onTime++; 
-				return true;
-			}
-		}
-	}
-}
-
-bool cVuelo::ChequearOnTimeArribo(long int horaActual, long int fechaActual) // devuelve false si la fecha u horario son inválidos
-{
-	if (fechaActual > 31120000 || fechaActual < 0 || horaActual>2359 || horaActual < 0)
-	{
-		cout << "Fecha u horario no valido" << endl;
-		return false;
-	}
-	else
-	{
-		if (fechaActual != fechaArribo)
-		{
-			return true;
-		}
-		else
-		{
-			if (horaActual != horaArribo)
-			{
-				return true;
-			}
-			else
-			{
-				onTime++;
-				return true;
-			}
-		}
-	}
+	return false;
 }
 
 float cVuelo::getOnTime()
@@ -190,7 +119,7 @@ void cVuelo::ImprimirDatos()
 
 string cVuelo::toString()
 {
-	return "Cantidad de pasajeros:" + to_string(cantpasajeros) + " " + "Num vuelo:" + to_string(numeroVuelo) + " "
-		+ "peso vuelo:" + to_string(pesoVuelo) + "Fecha y hora arribo:" + to_string(fechaArribo) + to_string(horaArribo) + " " +
-		"Fecha y hora partida:" + to_string(fechaPartida) + to_string(horaPartida) + " " + "Destino:" + DestinoToString(destino);
+	return "Cantidad de pasajeros: " + to_string(cantpasajeros) + "\nNum vuelo: " + to_string(numeroVuelo) + " "
+		+ "\npeso vuelo: " + to_string(pesoVuelo) + "\nFecha y hora arribo: " + fechaArribo->toString() + "\nFecha y hora despegue: " +
+		fechaPartida->toString();
 }

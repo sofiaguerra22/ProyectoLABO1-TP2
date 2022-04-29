@@ -149,6 +149,7 @@
     <ClInclude Include="cVuelo.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="cListaPasajeros.h" />
+    <ClInclude Include="Fecha.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cAeropuerto.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="cVuelo.cpp" />
     <ClCompile Include="Enums.cpp" />
     <ClCompile Include="cListaPasajeros.cpp" />
+    <ClCompile Include="Fecha.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
