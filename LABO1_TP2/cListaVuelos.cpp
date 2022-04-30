@@ -13,7 +13,6 @@ cListaVuelos::cListaVuelos(int L)
 
 cListaVuelos::~cListaVuelos()
 {
-
 	if (ListaVuelos != NULL) {
 
 		for (int i = 0; i < ca; i++)
@@ -34,52 +33,38 @@ bool cListaVuelos::operator+(cVuelo* Vuelo)
 		return true;
 	}
 		return false;
-
 }
 
-cVuelo* cListaVuelos::Quitar(int pos)
+cVuelo* cListaVuelos::operator-(int pos) //excepcion
 {
-	if (pos >= ca || ListaVuelos[pos] == NULL) //no existe tal pos o el puntero a esa posición esta desocupado
+	if (pos >= ca)
+		throw 1;
+	if (ListaVuelos[pos] == NULL)
+		throw 2;
+
+	ca--; //disminuimos la cantidad actual
+	cVuelo* aux = ListaVuelos[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
+	for (int i = pos; i < ca; i++)
 	{
-		cout << "Posicion incorrecta o desocupada";
-		return NULL;
+		ListaVuelos[i] = ListaVuelos[i + 1];
 	}
-	
-		ca--; //disminuimos la cantidad actual
-		cVuelo* aux = ListaVuelos[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
-		for (int i = pos; i < ca; i++)
-		{
-			ListaVuelos[i] = ListaVuelos[i + 1];
-		}
-		ListaVuelos[pos] = NULL; //quitamos el puntero
-		return aux; //devolvemos el auxiliar creado
+	ListaVuelos[pos] = NULL; //quitamos el puntero
+	return aux; //devolvemos el auxiliar creado
 }
 
-bool cListaVuelos::Eliminar(int pos)
+void cListaVuelos::Eliminar(int pos)
 {
-	cVuelo* aux = Quitar(pos);
-	if (aux == NULL)
+	try
 	{
-		cout << "No se puede eliminar";
-		return false;
+		*ListaVuelos - pos;
 	}
-	else if (aux != NULL)
+	catch (int e)
 	{
-		aux = NULL;
-		cout << "Se elimino con exito";
-		return true;
+		cout << "Error al eliminar Vuelo numero: " << e << endl; //1=posición mayor a ca 2=pos = NULL
 	}
-}
-
-cVuelo* cListaVuelos::VueloEncontrado(int ID)
-{
-	int pos = Buscar(ID);
-	if (pos =!- 1)
-	{
-		cVuelo* aux = ListaVuelos[pos];
-		return aux;
-	}
-		return NULL;
+	cVuelo* aux = *ListaVuelos - pos;
+	aux = NULL;
+	cout << "Se elimino con exito";
 }
 
 int cListaVuelos::Buscar(int ID)
@@ -88,8 +73,19 @@ int cListaVuelos::Buscar(int ID)
 	{
 		if (ListaVuelos[i]->getNumeroVuelo() == ID);
 		return i;
-	} 
+	}
 	return -1;
+}
+
+cVuelo* cListaVuelos::VueloEncontrado(int ID)
+{
+	int pos = Buscar(ID);
+	if (pos != -1)
+	{
+		cVuelo* aux = ListaVuelos[pos];
+		return aux;
+	}
+		return NULL;
 }
 
 void cListaVuelos::Listar() 

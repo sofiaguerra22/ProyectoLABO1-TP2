@@ -4,10 +4,14 @@
 #include <string>
 #include "cVuelo.h"
 #include "cListaVuelos.h"
+#include "cVuelo.h"
+#include "Fecha.h"
 using namespace std;
 class cAeropuerto; //forward declaration
 class cAvion
 {
+	friend class cAeropuerto;
+
 private:
 	int ID, cantpasajeros_actual, cantpasajeros_max; //atributo const
 	float pesomax, pesoactual;
@@ -21,15 +25,14 @@ public:
 	cAvion(int _ID, int _pasajerosmax, float _pesomax);
 	~cAvion();
 	bool AsignarVuelo(cVuelo* Vuelo);
-	void Despegar();
-	void Aterrizar(cAvion* Avion);
+	void Despegar(cAeropuerto* Aeropuerto, Fecha* fechaActual);
+	bool Aterrizar(cAeropuerto* Aeropuerto, Fecha* fechaActual);
 	void PedirPermiso();
-	bool RecibirPermiso(cAvion* Avion);
+	bool RecibirPermiso(cAeropuerto* Aeropuerto);
 	bool ChequearCargaMaxima();
 	int getCantPasajerosActual();
 	int getID() { return ID; };
 	void ImprimirDatos();
 	int getCantPasajeros() { return cantpasajeros_actual; };
 	string toString();
-	friend class cAeropuerto;
 };

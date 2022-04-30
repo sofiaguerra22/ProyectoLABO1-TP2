@@ -16,8 +16,12 @@ cListaPasajeros::~cListaPasajeros() //CONSULTAR
 {
 	if (ListaPasajeros != NULL) {
 
+		for (int i = 0; i < ca; i++)
+		{
+			if (ListaPasajeros[i] != NULL)
+				ListaPasajeros[i] = NULL;
+		}
 		delete ListaPasajeros;
-
 	}
 }
 
@@ -30,47 +34,40 @@ bool cListaPasajeros::operator+(cPasajero* Pasajero)
 		ca++;
 		return true;
 	}
-	else
+	return false;
+}
+
+cPasajero* cListaPasajeros::operator-(int pos) //excepcion
+{
+	if (pos >= ca)
+		throw 1;
+	if (ListaPasajeros[pos] == NULL)
+		throw 2;
+
+	ca--; //disminuimos la cantidad actual
+	cPasajero* aux = ListaPasajeros[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
+	for (int i = pos; i < ca; i++)
 	{
-		return false;
+		ListaPasajeros[i] = ListaPasajeros[i + 1];
 	}
-	
+	ListaPasajeros[pos] = NULL; //quitamos el puntero
+	return aux; //devolvemos el auxiliar creado
 
 }
 
-cPasajero* cListaPasajeros::Quitar(int pos)
+void cListaPasajeros::Eliminar(int pos)
 {
-	if (pos >= ca || ListaPasajeros[pos] == NULL) //no existe tal pos o el puntero a esa posición esta desocupado
+	try
 	{
-		cout << "Posicion incorrecta o desocupada";
-		return NULL;
+		*ListaPasajeros - pos;
 	}
-
-		ca--; //disminuimos la cantidad actual
-		cPasajero* aux = ListaPasajeros[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
-		for (int i = pos; i < ca; i++)
-		{
-			ListaPasajeros[i] = ListaPasajeros[i + 1];
-		}
-		ListaPasajeros[pos] = NULL; //quitamos el puntero
-		return aux; //devolvemos el auxiliar creado
-
-}
-
-bool cListaPasajeros::Eliminar(int pos)
-{
-	cPasajero* aux = Quitar(pos);
-	if (aux == NULL)
+	catch (int e)
 	{
-		cout << "No se puede eliminar";
-		return false;
+		cout << "Error al eliminar equipaje numero: " << e << endl; //1=posición mayor a ca 2=pos = NULL
 	}
-	else if (aux != NULL)
-	{
-		aux = NULL;
-		cout << "Se elimino con exito";
-		return true;
-	}
+	cPasajero* aux = *ListaPasajeros - pos;
+	aux = NULL;
+	cout << "Se elimino con exito";
 }
 
 
@@ -79,9 +76,7 @@ int cListaPasajeros::Buscar(string _DNI)
 	for (int i = 0; i < ca; i++)
 	{
 		if (ListaPasajeros[i]->DNI== _DNI)
-		{
 			return i;
-		}
 	}
 	return -1;
 }
@@ -104,8 +99,12 @@ void cListaPasajeros::AgregarEnPos(int pos, cPasajero* pasajero)
 	ListaPasajeros[pos] = pasajero;
 }
 
-void cListaPasajeros::Listar() //HACER
+void cListaPasajeros::Listar() 
 {
+	for (int i = 0; i < ca; i++)
+	{
+		ListaPasajeros[i]->ImprimirDatos();
+	}
 }
 
 cPasajero* cListaPasajeros::PasajeroEncontrado(string DNI)
@@ -116,9 +115,5 @@ cPasajero* cListaPasajeros::PasajeroEncontrado(string DNI)
 		cPasajero* aux = ListaPasajeros[pos];
 		return aux;
 	}
-	else
-	{
-		return nullptr;
-	}
-
+	return NULL;
 }

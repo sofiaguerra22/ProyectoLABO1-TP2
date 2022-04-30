@@ -1,10 +1,10 @@
 #include "cVuelo.h"
 
-cVuelo::cVuelo(int _numeroVuelo)
+cVuelo::cVuelo(int _numeroVuelo, eDestino _destino)
 {
 	cantpasajeros = 0;
 	numeroVuelo = _numeroVuelo; //CONSULTAR
-	pesoVuelo = 0.0;
+	pesoVuelo = 0;
 	onTime = 0;
 	fechaArribo = new Fecha();
 	fechaPartida = new Fecha();
@@ -12,7 +12,7 @@ cVuelo::cVuelo(int _numeroVuelo)
 	valija = NULL;
 	listaValijasVuelo = new cListaValija(MAX);
 	listaPasajerosVuelo = new cListaPasajeros(MAX);
-	destino = eDestino::SinDestino; //fijarnos lo del enum to string!!!
+	destino = _destino; 
 }
 
 cVuelo::~cVuelo() //completar el destructor
@@ -34,7 +34,7 @@ bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al p
 	pasajero_vuelo->asiento = cantpasajeros;
 	pasajero_vuelo->numerovuelo = numeroVuelo;
 	cantpasajeros++;
-	pesoVuelo = pesoVuelo + pasajero_vuelo->PesoTotal();
+	pesoVuelo = pesoVuelo + (pasajero_vuelo->PesoTotal());
 	return true;
 }
 
@@ -49,20 +49,21 @@ void cVuelo::ObtenerDatos(string DNI)
 
 }
 
-bool cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio) //TRY CATCH EN MAIN
+void cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio) //excepcion
 {
-	if (Pasajero_Vuelo != NULL || Pasajero_Cambio != NULL || listaPasajerosVuelo->Buscar(Pasajero_Vuelo) == -1)
-		return false;
-		//throw exception(); //completar
-	
+	if (Pasajero_Vuelo == NULL || Pasajero_Cambio == NULL) 
+		throw 1;
+	if (listaPasajerosVuelo->Buscar(Pasajero_Vuelo) == -1)
+		throw 2;
+
 	int pos = (listaPasajerosVuelo->Buscar(Pasajero_Vuelo)); // buscamos la posición en la lista de vuelos del primer dni
-	Pasajero_Vuelo->asiento = Pasajero_Vuelo->asiento;
-	Pasajero_Cambio->numerovuelo = Pasajero_Vuelo->numerovuelo;
-	pesoVuelo = (pesoVuelo - Pasajero_Vuelo->PesoTotal() + Pasajero_Cambio->PesoTotal());
+	(Pasajero_Cambio->asiento) = (Pasajero_Vuelo->asiento);
+	(Pasajero_Cambio->numerovuelo) = (Pasajero_Vuelo->numerovuelo);
+	pesoVuelo = (pesoVuelo - (Pasajero_Vuelo->acumpeso) + (Pasajero_Cambio->acumpeso));
 	Pasajero_Vuelo->asiento = -1;
 	Pasajero_Vuelo->numerovuelo = -1;
 	listaPasajerosVuelo->AgregarEnPos(pos, Pasajero_Cambio);  
-	return true;
+
 }
 
 bool cVuelo::EliminarPasajero(string DNI)
@@ -92,7 +93,7 @@ bool cVuelo::setFechas(Fecha* fecha_a, Fecha* fecha_p)
 
 bool cVuelo::ChequearOnTimePartida(Fecha* FechaActual) //devuelve false so la fecha u horario son inválidos
 {
-	if (FechaActual->esCorrecta() == true && fechaPartida->Comparar(FechaActual))
+	if (FechaActual->esCorrecta() == true && fechaPartida->Comparar(FechaActual) == true)
 	{
 		onTime++;
 		return true;
@@ -102,7 +103,7 @@ bool cVuelo::ChequearOnTimePartida(Fecha* FechaActual) //devuelve false so la fe
 
 bool cVuelo::ChequearOnTimeArribo(Fecha* FechaActual) // devuelve false si la fecha u horario son inválidos
 {
-	if (FechaActual->esCorrecta() == true && fechaArribo->Comparar(FechaActual))
+	if (FechaActual->esCorrecta() == true && fechaArribo->Comparar(FechaActual) == true)
 	{
 		onTime++;
 		return true;
@@ -122,7 +123,7 @@ void cVuelo::ImprimirDatos()
 
 string cVuelo::toString()
 {
-	return "Cantidad de pasajeros: " + to_string(cantpasajeros) + "\nNum vuelo: " + to_string(numeroVuelo) + " "
-		+ "\npeso vuelo: " + to_string(pesoVuelo) + "\nFecha y hora arribo: " + fechaArribo->toString() + "\nFecha y hora despegue: " +
+	return "Num vuelo : " + to_string(numeroVuelo) + "\nDestino: " + DestinoToString(destino) + "\nCantidad de pasajeros : " + to_string(cantpasajeros) + 
+		"\npeso vuelo: " + to_string(pesoVuelo) + "\nFecha y hora arribo: " + fechaArribo->toString() + "\nFecha y hora despegue: " +
 		fechaPartida->toString() + "\nCantidad onTime: " + to_string(onTime);
 }

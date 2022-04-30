@@ -14,27 +14,16 @@ cListaAviones::cListaAviones(unsigned int L)
 
 cListaAviones::~cListaAviones() //HACER:
 {
-		if (ListaAviones != NULL) {
+	if (ListaAviones != NULL) {
 
-			for (int i = 0; i < ca; i++)
-			{
-				if (ListaAviones[i] != NULL)
-					ListaAviones[i] = NULL;
-			}
-
+		for (int i = 0; i < ca; i++)
+		{
+			if (ListaAviones[i] != NULL)
+				ListaAviones[i] = NULL;
 		}
-
-}
-
-bool cListaAviones::Agregar(cAvion* Avion)
-{
-	if (Avion != NULL)
-	{
-		ListaAviones[ca] = Avion;
-		ca++;
-		return true;
+		delete ListaAviones;
 	}
-	return false;
+
 }
 
 bool cListaAviones::operator+(cAvion* newAvion)
@@ -46,40 +35,37 @@ bool cListaAviones::operator+(cAvion* newAvion)
 	this->ListaAviones[ca] = newAvion;
 }
 
-cAvion* cListaAviones::Quitar(int pos)
+cAvion* cListaAviones::operator-(int pos)
 {
-	if (pos >= ca || ListaAviones[pos] == NULL) //no existe tal pos o el puntero a esa posición esta desocupado
-	{
-		cout << "Posicion incorrecta o desocupada";
-		return NULL;
-	}
-	
+	if (pos >= ca)
+		throw 1;
+	if (ListaAviones[pos] == NULL)
+		throw 2;
 
-		ca--; //disminuimos la cantidad actual
-		cAvion* aux = ListaAviones[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
-		for (int i = pos; i < ca; i++) 
-		{
-			ListaAviones[i] = ListaAviones[i + 1];
-		}
-		ListaAviones[pos] = NULL; //quitamos el puntero
-		return aux; //devolvemos el auxiliar creado
+	ca--; //disminuimos la cantidad actual
+	cAvion* aux = ListaAviones[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
+	for (int i = pos; i < ca; i++) 
+	{
+		ListaAviones[i] = ListaAviones[i + 1];
+	}
+	ListaAviones[pos] = NULL; //quitamos el puntero
+	return aux; //devolvemos el auxiliar creado
 	
 }
 
-bool cListaAviones::Eliminar(int pos)
+void cListaAviones::Eliminar(int pos)
 {
-	cAvion* aux = Quitar(pos);
-	if (aux == NULL)
+	try
 	{
-		cout << "No se puede eliminar";
-		return false;
+		*ListaAviones - pos;
 	}
-	else if (aux != NULL)
+	catch (int e)
 	{
-		aux = NULL;
-		cout << "Se elimino con exito";
-		return true;
+		cout << "Error al eliminar Vuelo numero: " << e << endl;
 	}
+	cAvion* aux = *ListaAviones - pos;
+	aux = NULL;
+	cout << "Se elimino con exito";
 }
 
 cAvion* cListaAviones::operator[](int posic_i) //HACER
@@ -92,15 +78,12 @@ int cListaAviones::Buscar(int ID)
 	for (int i = 0; i < ca; i++)
 	{
 		if (ListaAviones[i]->getID() == ID)
-		{
 			return i;
-			break;
-		}
 	}
 	return -1;
 }
 
-void cListaAviones::Listar() //HACER
+void cListaAviones::Listar()
 {
 	for (int i = 0; i < ca; i++)
 	{
@@ -110,10 +93,10 @@ void cListaAviones::Listar() //HACER
 
 int cListaAviones::PasajerosTotal()
 {
-	float pesoTotal = 0;
+	int PasajerosTotal = 0;
 	for (int i = 0; i < ca; i++)
 	{
-		pesoTotal = pesoTotal + ListaAviones[i]->getCantPasajeros();
+		PasajerosTotal = PasajerosTotal + ListaAviones[i]->getCantPasajeros();
 	}
-	return pesoTotal;
+	return PasajerosTotal;
 }

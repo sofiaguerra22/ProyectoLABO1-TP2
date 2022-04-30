@@ -5,7 +5,7 @@
 #include "cListaValija.h"
 #include "cValija.h"
 using namespace std;
-#define maxvalijas = 3 //cantidad maxima de valijas = 3; CONSULTAR!!!
+#define maxvalijas 3 //cantidad maxima de valijas = 3; CONSULTAR!!!
 class cPasajero
 {
 	friend class cListaPasajeros;
@@ -15,14 +15,15 @@ private: //atributos:
 	int asiento, numerovuelo;
 	string DNI;
 	bool equipaje; // si tiene equipaje o no
-	float acumpeso; // pesototal; //peso total de las valijas
+	float acumpeso; // peso total de las valijas
+	const float peso = 75; //uso de atributo const
 	cListaValija* valijas; //lista de valijas
 	//cValija* valija; 
 
 public: //metodos:
 	cPasajero(string _DNI);
 	~cPasajero();
-	bool AgregarEquipaje(cValija* valija);
+	void AgregarEquipaje(cValija* valija);
 	float PesoTotal(); //suma el peso del pasajero (75kg) con sus valijas 
 	string getDNI() { return DNI; };
 	void ImprimirDatos();

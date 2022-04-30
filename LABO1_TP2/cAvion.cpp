@@ -15,59 +15,83 @@ cAvion::cAvion(int _ID, int _pasajerosmax, float _pesomax)
 }
 cAvion::~cAvion()
 {
-	delete listaVuelos;
+	if (listaVuelos != NULL)
+	{
+		for (int i = 0; i < listaVuelos->ca; i++)
+		{
+			listaVuelos[i] = NULL;
+		}
+		delete listaVuelos;
+	}
 	vuelo = NULL;
 	aeropuerto = NULL;
 }
 
 bool cAvion::AsignarVuelo(cVuelo* _Vuelo)
 {
-	vuelo = _Vuelo; //si es NULL está inicializado de igual manera
-	if (_Vuelo != NULL && ChequearCargaMaxima() == true)
+	vuelo = _Vuelo; 
+	if (vuelo != NULL && ChequearCargaMaxima() == false)
 	{
-		return true;
+		vuelo = NULL;
+		return false;
 	}
+	else if (vuelo != NULL && ChequearCargaMaxima() == true)
+		return true;
 	return false;
 }
 
-void cAvion::Despegar()
+void cAvion::Despegar(cAeropuerto* Aeropuerto, Fecha* fechaActual)
 {
-	if (ChequearCargaMaxima() == true)
+	if (ChequearCargaMaxima() == true && aeropuerto != NULL)
 	{
-	aeropuerto->DespegueAvion();
-	cout << "El avion despego exitosamente" << endl;
+		aeropuerto = Aeropuerto;
+		aeropuerto->DespegueAvion();
+		vuelo->ChequearOnTimePartida(fechaActual);
+		cout << "El avion despego exitosamente" << endl;
 	}
+
 }
 
-void cAvion::Aterrizar(cAvion* Avion)
+bool cAvion::Aterrizar(cAeropuerto* Aeropuerto, Fecha* fechaActual)
 {
-	aeropuerto->AgregarAvion(Avion);
-	cout << "El avion aterrizo exitosamente" << endl;
+	if (Aeropuerto != NULL && vuelo != NULL)
+	{
+		aeropuerto = Aeropuerto;
+		if (RecibirPermiso(Aeropuerto) == true)
+		{
+			aeropuerto->AgregarVueloAvion(vuelo);
+			vuelo->ChequearOnTimeArribo(fechaActual);
+			cout << "El avion aterrizo exitosamente" << endl;
+			return true;
+		}
+		else
+			aeropuerto = NULL;
+	}
+	cout << "No hay espacio en el hangar" << endl;
+	return false;
 }
 
 void cAvion::PedirPermiso()
 {
-	permiso = aeropuerto->DarPermiso(); //iguala el atributo permiso a lo que responda el aeropuerto
+	if (aeropuerto->DarPermiso() == true)
+		permiso = true; //iguala el atributo permiso a lo que responda el aeropuerto
 }
 
-bool cAvion::RecibirPermiso(cAvion* Avion)
+bool cAvion::RecibirPermiso(cAeropuerto* Aeropuerto)
 {
 	PedirPermiso();
 	if (permiso == true)
-	{
-		Aterrizar(Avion); //llama a aterrizar
 		return true;
-	}
-		return false;
+		
+	return false;
 }
 
 bool cAvion::ChequearCargaMaxima()
 {
-	pesoactual = vuelo->getPesoVuelo() +(4 * 75); //la suma de los 4 empleados sin equipaje
-	if (pesoactual <= pesomax)
-		return true;
-	else 
+	pesoactual = (vuelo->getPesoVuelo()) +(4 * 75); //la suma de los 4 empleados sin equipaje
+	if (pesoactual > pesomax)
 		return false;
+	return true;
 }
 
 int cAvion::getCantPasajerosActual()

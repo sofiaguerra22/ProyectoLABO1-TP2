@@ -26,11 +26,11 @@ private:
 
 
 public:
-	cVuelo(int _numeroVuelo);
+	cVuelo(int _numeroVuelo, eDestino _destino);
 	~cVuelo();
 	bool AgregarPasajero(cPasajero* pasajero_vuelo);
 	void ObtenerDatos(string DNI);
-	bool CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio); //el 1 es el actual y el 2 es el nuevo pasajero
+	void CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio); 
 	bool EliminarPasajero(string DNI);
 	bool setFechas(Fecha* fecha_a, Fecha* fecha_p); //recibe fecha de arribo y fecha de partida
 	bool ChequearOnTimePartida(Fecha* FechaActual);
@@ -38,7 +38,8 @@ public:
 	float getOnTime();
 	void ImprimirDatos();
 	string toString();
-	int getNumeroVuelo() { return numeroVuelo; };
-	int getPesoVuelo() { return pesoVuelo; };
+	int getNumeroVuelo() { return this->numeroVuelo; };
+	float getPesoVuelo() { return this->pesoVuelo; };
+	cAvion* getAvion() { return avion; };
 };
 

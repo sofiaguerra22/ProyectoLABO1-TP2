@@ -13,13 +13,11 @@ cPasajero::cPasajero(string _DNI)
 cPasajero::~cPasajero()
 {
 	delete valijas;
-	//valija = NULL;
-
 }
 
-bool cPasajero::AgregarEquipaje(cValija* valija) //Y TRY CATCH
+void cPasajero::AgregarEquipaje(cValija* valija) 
 {
-	/*if (valija != NULL)
+	if (valija == NULL)
 	{
 		throw 1;
 	}
@@ -27,26 +25,15 @@ bool cPasajero::AgregarEquipaje(cValija* valija) //Y TRY CATCH
 	{
 		throw 2;
 	}
-	if (valija->getDNI() != DNI)
-	{
-		throw 3;
-	}
-	
-		*valijas + valija;
-		return true;*/
-	if (valija != NULL && (valija->getPeso() + acumpeso) <= 25 && valija->getDNI() == DNI)
-	{
-		*valijas + valija;
-		acumpeso = acumpeso + valija->getPeso();
-		return true;
-	}
-	return false;
+	*valijas + valija;
+	acumpeso = acumpeso + valija->getPeso();
 }
 
 
 float cPasajero::PesoTotal()
 {
-	return acumpeso + 75;
+	float _peso = acumpeso + peso; //peso total de las valijas + el peso del pasajero
+	return _peso; 
 }
 
 void cPasajero::ImprimirDatos()
@@ -56,6 +43,7 @@ void cPasajero::ImprimirDatos()
 
 string cPasajero::toString()
 {
-	return "Asiento: " + to_string(asiento) + " " + "\nDNI:" + DNI + " " + "\nEquipaje" + to_string(equipaje) + "\Numero Vuelo: " + to_string(numerovuelo);
+	return "DNI: " + DNI + "\nNumero de Asiento: " + to_string(asiento) + "\nNumero de Vuelo: " + to_string(numerovuelo) +
+		"\nPeso total valijas: " + to_string(acumpeso);
 }
 

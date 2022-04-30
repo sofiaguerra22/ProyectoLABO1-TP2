@@ -13,24 +13,44 @@ cAeropuerto::cAeropuerto(int _capacidadmax, int _ID)
 	ListaAviones = new cListaAviones();
 	ListaVuelos = new cListaVuelos();
 }
+
 cAeropuerto::~cAeropuerto() 
 {
-	delete ListaAviones;
-	delete ListaVuelos;
+	if (ListaAviones != NULL)
+	{
+		for (int i = 0; i < ListaAviones->ca; i++)
+		{
+			ListaAviones[i] = NULL;
+		}
+		delete ListaAviones;
+	}
+	if (ListaVuelos != NULL)
+	{
+		for (int i = 0; i < ListaVuelos->ca; i++)
+		{
+			ListaVuelos[i] = NULL;
+		}
+		delete ListaVuelos;
+	}
 }
-void cAeropuerto::AgregarAvion(cAvion* Avion) 
+void cAeropuerto::AgregarVueloAvion(cVuelo* Vuelo) 
 {
-	*ListaAviones + Avion;//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
-	*ListaVuelos + (Avion->vuelo); //por esto hay friend class de aeropuerto en cAvion
-	CapacidadActual++;
-	cantVuelos++;
-	cantAviones++;
+	if (Vuelo != NULL)
+	{
+		*ListaVuelos + Vuelo;
+		cantVuelos++;
+		CapacidadActual++;
+		cAvion* auxAvion = Vuelo->getAvion();
+		*ListaAviones + auxAvion;
+		cantAviones++;
+	}
+
 }
 void cAeropuerto::Estadisticas()
 {
 	cantPasajeros = ListaAviones->PasajerosTotal();
 	cantOnTime = ListaVuelos->CantidadOnTime();
-	porcentajeOnTime = (trunc((cantOnTime / cantVuelos)) * 100);
+	porcentajeOnTime = ((cantOnTime / cantVuelos) * 100);
 }
 bool cAeropuerto::DarPermiso()
 {
@@ -46,11 +66,12 @@ void cAeropuerto::ImprimirDatos()
 
 void cAeropuerto::DespegueAvion()
 {
-	CapacidadActual--;
+	cantVuelos++;
+	CapacidadActual = CapacidadActual - 1;
 }
 
 string cAeropuerto::toString()
 {
 	return "ID Aeropuerto:" + to_string(ID_Aeropuerto)+"\nCantidad de Aviones en Aeropuerto: "+to_string(CapacidadActual)
-		+"\nCantidad de Aviones en total: "+to_string(cantAviones)+"\Cantidad de onTime: "+to_string(cantOnTime)+"\nPorcentaje onTime"+ to_string(porcentajeOnTime)+"%";
+		+"\nCantidad de Vuelos en total: "+to_string(cantVuelos)+"\nCantidad de onTime: "+to_string(cantOnTime)+"\nPorcentaje onTime"+ to_string(porcentajeOnTime)+"%";
 }

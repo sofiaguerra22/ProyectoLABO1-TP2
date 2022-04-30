@@ -9,13 +9,7 @@ cValija::cValija(float _peso, string _dni)
 
 cValija::~cValija()
 {
-
 }
-
-/*void cValija::AgregarValijaLista()
-{
-	cListaValija* valija = new cListaValija(peso, DNI);
-}*/
 
 void cValija::ImprimirDatos()
 {
@@ -24,5 +18,5 @@ void cValija::ImprimirDatos()
 
 string cValija::toString()
 {
-	return "Peso valija:" + to_string(peso) + " " + "DNI:" + DNI + " ";
+	return "Valija del DNI:" + DNI + "\nPeso:" + to_string(peso);
 }

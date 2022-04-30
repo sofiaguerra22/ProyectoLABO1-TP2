@@ -13,10 +13,9 @@ public:
 	cListaValija(int L);
 	~cListaValija();
 	bool operator+(cValija* Valija);
-	cValija* Quitar(int pos);
+	cValija* operator-(int pos);
 	bool Eliminar(int pos);
 	cValija* operator[](int posic_i);
-	int Buscar(int clave);
 	void Listar(); //imprime la lista en pantalla
 	int getCA() { return ca; };
 
