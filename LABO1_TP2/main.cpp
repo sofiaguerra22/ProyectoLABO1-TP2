@@ -18,8 +18,13 @@ int main()
 		*ListaPasajeros + pasajero3;
 	//Valijas:
 		cValija* valija1_p1 = new cValija(15, pasajero1->getDNI()); 
-		cValija* valija2_p1 = new cValija(18, pasajero1->getDNI()); //pasajero 2 se excede de equipaje
+		cValija* valija2_p1 = new cValija(9, pasajero1->getDNI()); 
 		cValija* valija1_p2 = new cValija(20, pasajero2->getDNI());
+		//ListaValijas:
+		cListaValija* ListaValijas = new cListaValija(MAX);
+		*ListaValijas + valija1_p1;
+		*ListaValijas + valija2_p1;
+		*ListaValijas + valija1_p2;
 		//try
 		//{
 		//	pasajero1->AgregarEquipaje(valija1_p1);
@@ -31,16 +36,11 @@ int main()
 		//{
 		//	cout << "Error al agregar equipaje. Numero de error: " << e << endl; //1=puntero null, 2=supera peso, 3=el equipaje no corresponde a esa persona
 		//} 
-		//try catch: pero por el momento agregamos el equipaje así
+		
+	//try catch: pero por el momento agregamos el equipaje así
 		pasajero1->AgregarEquipaje(valija1_p1);
-		pasajero1->AgregarEquipaje(valija1_p1);
+		pasajero1->AgregarEquipaje(valija2_p1);
 		pasajero2->AgregarEquipaje(valija1_p2);
-
-		//ListaValijas:
-		cListaValija* ListaValijas = new cListaValija(MAX);
-		*ListaValijas + valija1_p1;
-		*ListaValijas + valija2_p1;
-		*ListaValijas + valija1_p2;
 
 	//Fechas:
 		Fecha* fecha1 = new Fecha(10, 4, 2022, 20, 30);

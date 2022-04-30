@@ -12,8 +12,6 @@ cVuelo::cVuelo(int _numeroVuelo)
 	valija = NULL;
 	listaValijasVuelo = new cListaValija(MAX);
 	listaPasajerosVuelo = new cListaPasajeros(MAX);
-	PasajeroCambio = NULL;
-	PasajeroVuelo = NULL;
 	destino = eDestino::SinDestino; //fijarnos lo del enum to string!!!
 }
 
@@ -23,8 +21,6 @@ cVuelo::~cVuelo() //completar el destructor
 	delete fechaPartida;
 	delete listaValijasVuelo;
 	delete listaPasajerosVuelo;
-	PasajeroCambio = NULL;
-	PasajeroVuelo = NULL;
 	avion = NULL;
 	valija = NULL;
 }
@@ -32,12 +28,14 @@ cVuelo::~cVuelo() //completar el destructor
 bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al pasajero a agregar LLA,AR EN EL MAIN AL TRY CATCH
 {
 	if (pasajero_vuelo == NULL)
-		throw new exception();//llenar
+		return false;
+		//throw new exception();//llenar
 	*listaPasajerosVuelo + pasajero_vuelo;
 	pasajero_vuelo->asiento = cantpasajeros;
 	pasajero_vuelo->numerovuelo = numeroVuelo;
 	cantpasajeros++;
-
+	pesoVuelo = pesoVuelo + pasajero_vuelo->PesoTotal();
+	return true;
 }
 
 void cVuelo::ObtenerDatos(string DNI)
@@ -45,26 +43,26 @@ void cVuelo::ObtenerDatos(string DNI)
 	int pos = listaPasajerosVuelo->Buscar(DNI);
 	if (pos != -1)
 	{
-		PasajeroVuelo = listaPasajerosVuelo->PasajeroEncontrado(DNI);
-			PasajeroVuelo->toString();
+		cPasajero* pasajeroVuelo = listaPasajerosVuelo->PasajeroEncontrado(DNI);
+			pasajeroVuelo->toString();
 	}
 
 }
 
 bool cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio) //TRY CATCH EN MAIN
 {
-	if(Pasajero_Vuelo != NULL || Pasajero_Cambio != NULL)
-		throw exception(); //completar
+	if (Pasajero_Vuelo != NULL || Pasajero_Cambio != NULL || listaPasajerosVuelo->Buscar(Pasajero_Vuelo) == -1)
+		return false;
+		//throw exception(); //completar
 	
-		int pos = (listaPasajerosVuelo->Buscar(Pasajero_Vuelo->DNI)); // buscamos la posición en la lista de vuelos del primer dni
-		Pasajero_Cambio->asiento = Pasajero_Vuelo->asiento;
-		Pasajero_Cambio->numerovuelo = Pasajero_Vuelo->numerovuelo;
-		pesoVuelo = pesoVuelo - Pasajero_Vuelo->PesoTotal() + Pasajero_Cambio->PesoTotal();
-		Pasajero_Vuelo->asiento = -1;
-		Pasajero_Vuelo->numerovuelo = -1;
-		listaPasajerosVuelo->AgregarEnPos(pos, Pasajero_Cambio);  
-		return true;
-
+	int pos = (listaPasajerosVuelo->Buscar(Pasajero_Vuelo)); // buscamos la posición en la lista de vuelos del primer dni
+	Pasajero_Vuelo->asiento = Pasajero_Vuelo->asiento;
+	Pasajero_Cambio->numerovuelo = Pasajero_Vuelo->numerovuelo;
+	pesoVuelo = (pesoVuelo - Pasajero_Vuelo->PesoTotal() + Pasajero_Cambio->PesoTotal());
+	Pasajero_Vuelo->asiento = -1;
+	Pasajero_Vuelo->numerovuelo = -1;
+	listaPasajerosVuelo->AgregarEnPos(pos, Pasajero_Cambio);  
+	return true;
 }
 
 bool cVuelo::EliminarPasajero(string DNI)

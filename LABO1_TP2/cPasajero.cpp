@@ -37,6 +37,7 @@ bool cPasajero::AgregarEquipaje(cValija* valija) //Y TRY CATCH
 	if (valija != NULL && (valija->getPeso() + acumpeso) <= 25 && valija->getDNI() == DNI)
 	{
 		*valijas + valija;
+		acumpeso = acumpeso + valija->getPeso();
 		return true;
 	}
 	return false;

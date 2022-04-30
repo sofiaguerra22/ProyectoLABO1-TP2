@@ -19,8 +19,6 @@ private:
 	Fecha* fechaArribo;
 	Fecha* fechaPartida;
 	cListaPasajeros* listaPasajerosVuelo; //puntero simple ya que apunta a la lista
-	cPasajero* PasajeroVuelo; 
-	cPasajero* PasajeroCambio; // para el cambio de pasajeros 
 	cListaValija* listaValijasVuelo; //lista de valijas en vuelo
 	cValija* valija;
 	eDestino destino; //enum de destinos
@@ -32,7 +30,7 @@ public:
 	~cVuelo();
 	bool AgregarPasajero(cPasajero* pasajero_vuelo);
 	void ObtenerDatos(string DNI);
-	bool CambiarPasajero(cPasajero* PasajeroVuelo, cPasajero* PasajeroCambio); //el 1 es el actual y el 2 es el nuevo pasajero
+	bool CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio); //el 1 es el actual y el 2 es el nuevo pasajero
 	bool EliminarPasajero(string DNI);
 	bool setFechas(Fecha* fecha_a, Fecha* fecha_p); //recibe fecha de arribo y fecha de partida
 	bool ChequearOnTimePartida(Fecha* FechaActual);
