@@ -12,10 +12,10 @@ cValija::~cValija()
 
 }
 
-void cValija::AgregarValijaLista()
+/*void cValija::AgregarValijaLista()
 {
 	cListaValija* valija = new cListaValija(peso, DNI);
-}
+}*/
 
 void cValija::ImprimirDatos()
 {

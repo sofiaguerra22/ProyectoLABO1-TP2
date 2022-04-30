@@ -2,33 +2,46 @@
 
 cPasajero::cPasajero(string _DNI)
 {
-	valijas = new cListaValija(); 
+	valijas = new cListaValija(MAX); 
 	equipaje = false;
 	numerovuelo = -1; //cuando el numero de vuelo es -1 es porque todavia no se le asigno
 	asiento = -1; //cuando el asiento es -1 es porque todaia no fue asigando
 	DNI = _DNI;
-	fecha = 0;
 	acumpeso = 0;// pesototal = 0;
-	valija = NULL;
+	//valija = NULL;
 }
 cPasajero::~cPasajero()
 {
 	delete valijas;
-	valija = NULL;
+	//valija = NULL;
 
 }
 
-bool cPasajero::AgregarEquipaje(float peso) //Y TRY CATCH
+bool cPasajero::AgregarEquipaje(cValija* valija) //Y TRY CATCH
 {
-	if (acumpeso + peso <= 25)
+	/*if (valija != NULL)
 	{
-		valija = new cValija(peso, DNI);
-		valijas->Agregar(valija);
-		acumpeso = acumpeso + peso;
-		return true; 
+		throw 1;
 	}
-	return false; //devuelve false si no hay mas espacio para valijas o el peso supera los 25kg
+	if (valija->getPeso() + acumpeso > 25)
+	{
+		throw 2;
+	}
+	if (valija->getDNI() != DNI)
+	{
+		throw 3;
+	}
+	
+		*valijas + valija;
+		return true;*/
+	if (valija != NULL && (valija->getPeso() + acumpeso) <= 25 && valija->getDNI() == DNI)
+	{
+		*valijas + valija;
+		return true;
+	}
+	return false;
 }
+
 
 float cPasajero::PesoTotal()
 {
@@ -42,6 +55,6 @@ void cPasajero::ImprimirDatos()
 
 string cPasajero::toString()
 {
-	return "Asiento" + to_string(asiento) + " " + "DNI:" + DNI + " " + "Equipaje" + to_string(equipaje) + "Fecha:" + to_string(fecha);
+	return "Asiento: " + to_string(asiento) + " " + "\nDNI:" + DNI + " " + "\nEquipaje" + to_string(equipaje) + "\Numero Vuelo: " + to_string(numerovuelo);
 }
 

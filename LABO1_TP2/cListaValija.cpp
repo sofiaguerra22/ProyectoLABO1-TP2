@@ -77,13 +77,13 @@ cValija* cListaValija::operator[](int posic_i) //HACER
 	return nullptr;
 }
 
-int cListaValija::Buscar(int clave) //HACER
+/*int cListaValija::Buscar(int clave) //HACER
 {
 	for (int i = 0; i < ca; i++)
 	{
 		if (ListaValija[i]);
 	}
-}
+}*/
 
 void cListaValija::Listar() //HACER
 {

@@ -18,10 +18,11 @@ cAeropuerto::~cAeropuerto()
 	delete ListaAviones;
 	delete ListaVuelos;
 }
-bool cAeropuerto::AgregarAvion(cAvion*Avion) 
+void cAeropuerto::AgregarAvion(cAvion* Avion) 
 {
 	*ListaAviones + Avion;//llamo al operator+ que se encuentra dentro de la clase cListaAviones y me agrego el avion que yo decida asignar
-	*ListaVuelos + (Avion->vuelo);
+	*ListaVuelos + (Avion->vuelo); //por esto hay friend class de aeropuerto en cAvion
+	CapacidadActual++;
 	cantVuelos++;
 	cantAviones++;
 }
@@ -29,7 +30,7 @@ void cAeropuerto::Estadisticas()
 {
 	cantPasajeros = ListaAviones->PasajerosTotal();
 	cantOnTime = ListaVuelos->CantidadOnTime();
-	porcentajeOnTime = cantOnTime / cantVuelos;
+	porcentajeOnTime = (trunc((cantOnTime / cantVuelos)) * 100);
 }
 bool cAeropuerto::DarPermiso()
 {
@@ -50,5 +51,6 @@ void cAeropuerto::DespegueAvion()
 
 string cAeropuerto::toString()
 {
-	return "ID Aeropuerto:" + to_string(ID_Aeropuerto);
+	return "ID Aeropuerto:" + to_string(ID_Aeropuerto)+"\nCantidad de Aviones en Aeropuerto: "+to_string(CapacidadActual)
+		+"\nCantidad de Aviones en total: "+to_string(cantAviones)+"\Cantidad de onTime: "+to_string(cantOnTime)+"\nPorcentaje onTime"+ to_string(porcentajeOnTime)+"%";
 }

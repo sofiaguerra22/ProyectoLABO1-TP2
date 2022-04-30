@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-enum class eDestino { Londres, Paris, NY };
+enum class eDestino { SinDestino, Londres, Paris, NY };
 
 string DestinoToString(eDestino destino);
 

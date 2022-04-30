@@ -15,15 +15,14 @@ private: //atributos:
 	int asiento, numerovuelo;
 	string DNI;
 	bool equipaje; // si tiene equipaje o no
-	long int fecha;
 	float acumpeso; // pesototal; //peso total de las valijas
 	cListaValija* valijas; //lista de valijas
-	cValija* valija; 
+	//cValija* valija; 
 
 public: //metodos:
 	cPasajero(string _DNI);
 	~cPasajero();
-	bool AgregarEquipaje(float peso);
+	bool AgregarEquipaje(cValija* valija);
 	float PesoTotal(); //suma el peso del pasajero (75kg) con sus valijas 
 	string getDNI() { return DNI; };
 	void ImprimirDatos();

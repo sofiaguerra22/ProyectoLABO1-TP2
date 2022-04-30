@@ -7,13 +7,13 @@
 #include "cListaPasajeros.h"
 #include "cPasajero.h" //friend class
 #include "Fecha.h"
-class cAvion;
+class cAvion; //forward declaration
 using namespace std;
 class cVuelo
 {
 	//atributos:
 private:
-	int cantpasajeros, numeroVuelo;
+	int cantpasajeros, numeroVuelo; //numero de vuelo hay q hacer que se sume de a uno c estatic
 	float pesoVuelo;
 	float onTime; //cant de veces que salieron o llegaron a tiempo, float para después servir en el porcentaje
 	Fecha* fechaArribo;
@@ -28,7 +28,7 @@ private:
 
 
 public:
-	cVuelo();
+	cVuelo(int _numeroVuelo);
 	~cVuelo();
 	bool AgregarPasajero(cPasajero* pasajero_vuelo);
 	void ObtenerDatos(string DNI);

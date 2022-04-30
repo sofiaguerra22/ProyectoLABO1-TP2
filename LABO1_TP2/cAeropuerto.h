@@ -3,16 +3,16 @@
 #include <stdio.h>
 #include <string>
 #include "cAvion.h"
-#include "cVuelo.h"
 #include "cListaAviones.h"
 #include "cListaVuelos.h"
+#include <cmath>
 using namespace std;
 
 class cAeropuerto
 {
 
 private:
-	int CapacidadActual, CapacidadMax, cantAviones, ID_Aeropuerto; //tam=tamaño lista de Vuelos y Aviones 
+	int CapacidadActual, CapacidadMax, cantAviones, ID_Aeropuerto; //cantAviones=tamaño lista de Vuelos y Aviones 
 	//atributos para las estadísticas, cant vuelos que desp o aterri:
 	int cantPasajeros, cantVuelos;
 	float cantOnTime, porcentajeOnTime;
@@ -24,7 +24,7 @@ public:
 	cAeropuerto(int _capacidadmax, int _ID);
 	~cAeropuerto();
 	void DespegueAvion(); //disminuye por uno la capacidadActual del aeropuerto
-	bool AgregarAvion(cAvion*Avion);
+	void AgregarAvion(cAvion*Avion);
 	bool DarPermiso();
 	void Estadisticas(); // cant de pasajeros que volaron en un día, cant de vuelos que aterrizaron y despegaron en el día,
 	//porcentaje de vuelos que despegaron y aterrizaron en horario.

@@ -37,10 +37,11 @@ bool cListaAviones::Agregar(cAvion* Avion)
 	return false;
 }
 
-void cListaAviones::operator+(cAvion* newAvion)
+bool cListaAviones::operator+(cAvion* newAvion)
 {
 	if (this->ListaAviones[ca] != NULL) {
-		throw new exception;
+		return false;
+		//throw new exception;
 	}
 	this->ListaAviones[ca] = newAvion;
 }

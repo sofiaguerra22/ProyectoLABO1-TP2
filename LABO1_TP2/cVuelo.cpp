@@ -1,26 +1,20 @@
 #include "cVuelo.h"
 
-/*cPasajero** listaPasajerosVuelo; //puntero doble que almacena en posiciones de memoria cada uno de los pasajeros en el vuelo
-	cPasajero* pasajero;
-	cValija** listaValijasVuelo;
-	cValija* valijaVuelo;*/
-
-cVuelo::cVuelo() 
+cVuelo::cVuelo(int _numeroVuelo)
 {
 	cantpasajeros = 0;
-	destino = "";
-	numeroVuelo = 0; //CONSULTAR
+	numeroVuelo = _numeroVuelo; //CONSULTAR
 	pesoVuelo = 0.0;
 	onTime = 0;
 	fechaArribo = new Fecha();
 	fechaPartida = new Fecha();
 	avion = NULL;
 	valija = NULL;
-	listaValijasVuelo = new cListaValija();
+	listaValijasVuelo = new cListaValija(MAX);
 	listaPasajerosVuelo = new cListaPasajeros(MAX);
 	PasajeroCambio = NULL;
 	PasajeroVuelo = NULL;
-
+	destino = eDestino::SinDestino; //fijarnos lo del enum to string!!!
 }
 
 cVuelo::~cVuelo() //completar el destructor
@@ -40,6 +34,9 @@ bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al p
 	if (pasajero_vuelo == NULL)
 		throw new exception();//llenar
 	*listaPasajerosVuelo + pasajero_vuelo;
+	pasajero_vuelo->asiento = cantpasajeros;
+	pasajero_vuelo->numerovuelo = numeroVuelo;
+	cantpasajeros++;
 
 }
 
@@ -59,11 +56,13 @@ bool cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Camb
 	if(Pasajero_Vuelo != NULL || Pasajero_Cambio != NULL)
 		throw exception(); //completar
 	
-		int pos = listaPasajerosVuelo->Buscar(Pasajero_Vuelo->DNI); // buscamos la posición en la lista de vuelos del primer dni
+		int pos = (listaPasajerosVuelo->Buscar(Pasajero_Vuelo->DNI)); // buscamos la posición en la lista de vuelos del primer dni
 		Pasajero_Cambio->asiento = Pasajero_Vuelo->asiento;
 		Pasajero_Cambio->numerovuelo = Pasajero_Vuelo->numerovuelo;
 		pesoVuelo = pesoVuelo - Pasajero_Vuelo->PesoTotal() + Pasajero_Cambio->PesoTotal();
-		listaPasajerosVuelo->AgregarEnPos(pos, Pasajero_Cambio);  //preguntar 
+		Pasajero_Vuelo->asiento = -1;
+		Pasajero_Vuelo->numerovuelo = -1;
+		listaPasajerosVuelo->AgregarEnPos(pos, Pasajero_Cambio);  
 		return true;
 
 }
@@ -127,5 +126,5 @@ string cVuelo::toString()
 {
 	return "Cantidad de pasajeros: " + to_string(cantpasajeros) + "\nNum vuelo: " + to_string(numeroVuelo) + " "
 		+ "\npeso vuelo: " + to_string(pesoVuelo) + "\nFecha y hora arribo: " + fechaArribo->toString() + "\nFecha y hora despegue: " +
-		fechaPartida->toString();
+		fechaPartida->toString() + "\nCantidad onTime: " + to_string(onTime);
 }
