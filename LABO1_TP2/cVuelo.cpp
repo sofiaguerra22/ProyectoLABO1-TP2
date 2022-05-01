@@ -130,3 +130,5 @@ string cVuelo::toString()
 		"\npeso vuelo: " + to_string(pesoVuelo) + "\nFecha y hora arribo: " + fechaArribo->toString() + "\nFecha y hora despegue: " +
 		fechaPartida->toString() + "\nCantidad onTime: " + to_string(onTime);
 }
+
+

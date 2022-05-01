@@ -64,6 +64,12 @@ int main()
 		*ListaVuelos + vuelo1;
 		*ListaVuelos + vuelo2;
 
+		cout << "\nPrueba de sobrecarga de impresion ostream: " << endl;
+		cout << *vuelo1 << endl; //imprime la cantidad de pasajeros
+		cout << *vuelo2 << endl;
+		cout << "\n---------------------------------------------------------------------------------" << endl;
+		system("pause");
+
 		cout << "\nDatos vuelos sin pasajeros: " << endl;
 		vuelo1->ImprimirDatos();
 		cout << "\n---------------------------------------------------------------------------------" << endl;
