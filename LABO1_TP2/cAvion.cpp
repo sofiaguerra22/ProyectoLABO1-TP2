@@ -29,7 +29,7 @@ cAvion::~cAvion()
 
 bool cAvion::AsignarVuelo(cVuelo* _Vuelo)
 {
-	vuelo = _Vuelo; 
+	vuelo = _Vuelo; //en el caso que el vuelo sea NULL, sigue siendo null y devuelve false
 	if (vuelo != NULL && ChequearCargaMaxima() == false)
 	{
 		vuelo = NULL;
@@ -42,11 +42,11 @@ bool cAvion::AsignarVuelo(cVuelo* _Vuelo)
 
 void cAvion::Despegar(cAeropuerto* Aeropuerto, Fecha* fechaActual)
 {
-	if (ChequearCargaMaxima() == true && aeropuerto != NULL)
+	if (ChequearCargaMaxima() == true && aeropuerto != NULL && fechaActual->esCorrecta() == true)
 	{
 		aeropuerto = Aeropuerto;
-		aeropuerto->DespegueAvion();
-		vuelo->ChequearOnTimePartida(fechaActual);
+		aeropuerto->DespegueAvion(); 
+		vuelo->ChequearOnTimePartida(fechaActual); //se fija si despego on time o no
 		cout << "El avion despego exitosamente" << endl;
 	}
 
@@ -54,7 +54,7 @@ void cAvion::Despegar(cAeropuerto* Aeropuerto, Fecha* fechaActual)
 
 bool cAvion::Aterrizar(cAeropuerto* Aeropuerto, Fecha* fechaActual)
 {
-	if (Aeropuerto != NULL && vuelo != NULL)
+	if (Aeropuerto != NULL && vuelo != NULL && fechaActual->esCorrecta() == true)
 	{
 		aeropuerto = Aeropuerto;
 		if (RecibirPermiso(Aeropuerto) == true)

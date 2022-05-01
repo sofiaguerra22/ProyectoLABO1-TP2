@@ -10,14 +10,14 @@ using namespace std;
 class cAeropuerto; //forward declaration
 class cAvion
 {
-	friend class cAeropuerto;
+	friend class cAeropuerto; //aeropuerto tiene que poder acceder a su puntero de vuelo
 
 private:
-	int ID, cantpasajeros_actual, cantpasajeros_max; //atributo const
+	int ID, cantpasajeros_actual, cantpasajeros_max; 
 	float pesomax, pesoactual;
 	bool permiso;
 	cVuelo* vuelo;
-	cListaVuelos* listaVuelos; //puntero a la lista total de vuelos
+	cListaVuelos* listaVuelos; 
 	cAeropuerto* aeropuerto; 
 
 
@@ -32,7 +32,7 @@ public:
 	bool ChequearCargaMaxima();
 	int getCantPasajerosActual();
 	int getID() { return ID; };
-	void ImprimirDatos();
 	int getCantPasajeros() { return cantpasajeros_actual; };
+	void ImprimirDatos();
 	string toString();
 };

@@ -12,10 +12,10 @@ class cListaValija
 public:
 	cListaValija(int L);
 	~cListaValija();
-	bool operator+(cValija* Valija);
+	bool operator+(cValija* Valija); //sobrecarga operador +
 	cValija* Quitar(int pos);
 	bool Eliminar(int pos);
-	cValija* operator[](int posic_i);
+	cValija* operator[](int posic_i); //sobrecarga operador []
 	void Listar(); //imprime la lista en pantalla
 	int getCA() { return ca; };
 

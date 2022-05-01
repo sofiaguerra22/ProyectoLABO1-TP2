@@ -12,15 +12,15 @@ class cListaAviones
 	int ca; //cantidad actual
 
 public:
-	cListaAviones(int L);
+	cListaAviones(int L); //L=length, tamaño
 	~cListaAviones();
-	bool operator+(cAvion* newAvion);
+	bool operator+(cAvion* newAvion); //sobrecarga operador +
 	cAvion* Quitar(int pos);
 	void Eliminar(int pos);
-	cAvion* operator[](int posic_i); //=buscar???
+	cAvion* operator[](int posic_i); //sobrecarga operador []
 	int Buscar(int ID);
 	void Listar(); //imprime la lista en pantalla
-	int PasajerosTotal();
-	cAvion** getLista() { return ListaAviones; }; //puntero simple o doble?
+	int PasajerosTotal(); //itera la lista y va sumando la cantidad de pasajeros a un acumulador
+	cAvion** getLista() { return ListaAviones; }; //devuelve la lista completa
 };
 

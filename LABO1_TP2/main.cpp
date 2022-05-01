@@ -38,7 +38,7 @@ int main()
 			cout << "\nError al agregar equipaje. Numero de error: " << e << endl; //1=puntero null, 2=supera peso, 3=el equipaje no corresponde a esa persona
 			system("pause");
 		} 
-		cout << "\nDatos de pasajeros: " << endl;
+		cout << "\nDatos de pasajeros sin avion asignado: " << endl;
 		cout << "\nPasajero1: " << endl;
 		pasajero1->ImprimirDatos();
 		cout << "\n---------------------------------------------------------------------------------" << endl;

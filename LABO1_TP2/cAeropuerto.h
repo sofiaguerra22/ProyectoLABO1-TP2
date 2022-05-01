@@ -12,12 +12,12 @@ class cAeropuerto
 {
 	friend class cVuelo; // para que pueda modificar su capacidad actual
 private:
-	int CapacidadActual, CapacidadMax, cantAviones, ID_Aeropuerto; //cantAviones=tamaño lista de Vuelos y Aviones 
-	//atributos para las estadísticas, cant vuelos que desp o aterri:
+	int CapacidadActual, CapacidadMax, cantAviones, ID_Aeropuerto; 
+	//atributos para las estadísticas, cant vuelos que despegan o aterrizan:
 	int cantPasajeros, cantVuelos;
 	float cantOnTime, porcentajeOnTime;
 
-	cListaAviones* ListaAviones; //tanto la lista de los aviones como la de los vuelos almacena la cantidad total que hubo en el aeropuerto durante la duración del programa
+	cListaAviones* ListaAviones;
 	cListaVuelos* ListaVuelos;
 
 public:
@@ -25,7 +25,7 @@ public:
 	~cAeropuerto();
 	void DespegueAvion(); //disminuye por uno la capacidadActual del aeropuerto
 	bool DarPermiso();
-	void AgregarVueloAvion(cVuelo* Vuelo);
+	void AgregarVueloAvion(cVuelo* Vuelo); //Agrega el Vuelo y su Avión correspondiente a las listas
 	void Estadisticas(); // cant de pasajeros que volaron en un día, cant de vuelos que aterrizaron y despegaron en el día,
 	//porcentaje de vuelos que despegaron y aterrizaron en horario.
 	void ImprimirDatos();

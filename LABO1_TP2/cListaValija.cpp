@@ -66,7 +66,7 @@ bool cListaValija::Eliminar(int pos)
 	return false;
 }
 
-cValija* cListaValija::operator[](int posic_i) //HACER
+cValija* cListaValija::operator[](int posic_i) 
 {
 	if (ListaValija[posic_i] != NULL && posic_i <= ca)
 	{

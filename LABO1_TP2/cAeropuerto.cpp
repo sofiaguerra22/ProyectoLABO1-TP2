@@ -37,11 +37,11 @@ void cAeropuerto::AgregarVueloAvion(cVuelo* Vuelo)
 {
 	if (Vuelo != NULL)
 	{
-		*ListaVuelos + Vuelo;
-		cantVuelos++;
+		*ListaVuelos + Vuelo; //se agrega el vuelo a la lista
+		cantVuelos++; 
 		CapacidadActual++;
-		cAvion* auxAvion = Vuelo->getAvion();
-		*ListaAviones + auxAvion;
+		cAvion* auxAvion = Vuelo->getAvion(); //se crea un auxiliar para agregar a la lista de aviones
+		*ListaAviones + auxAvion; //se agrega el avion a la lista
 		cantAviones++;
 	}
 
@@ -54,7 +54,7 @@ void cAeropuerto::Estadisticas()
 }
 bool cAeropuerto::DarPermiso()
 {
-	if (CapacidadActual < CapacidadMax)
+	if (CapacidadActual < CapacidadMax) //si no se supera la capacidad maxima da el permiso
 		return true;
 	else
 		return false;
@@ -66,12 +66,13 @@ void cAeropuerto::ImprimirDatos()
 
 void cAeropuerto::DespegueAvion()
 {
-	cantVuelos++;
+	cantVuelos++; //se suma un vuelo pq despegó
 	CapacidadActual = CapacidadActual - 1;
 }
 
 string cAeropuerto::toString()
 {
-	return "ID Aeropuerto:" + to_string(ID_Aeropuerto)+"\nCantidad de Aviones en Aeropuerto: "+to_string(CapacidadActual)
-		+"\nCantidad de Vuelos en total: "+to_string(cantVuelos)+"\nCantidad de onTime: "+to_string(cantOnTime)+"\nPorcentaje onTime"+ to_string(porcentajeOnTime)+"%";
+	return "ID Aeropuerto:" + to_string(ID_Aeropuerto) + "\nCantidad de Aviones en Aeropuerto: " + to_string(CapacidadActual)
+		+ "\nCantidad de Vuelos en total: " + to_string(cantVuelos) + "\nCantidad de onTime: " + to_string(cantOnTime) + "\nPorcentaje onTime: " +
+		to_string(porcentajeOnTime) + "%";
 }

@@ -6,8 +6,6 @@
 
 class cListaPasajeros
 {
-	friend class cVuelo;
-
 private:
 	cPasajero** ListaPasajeros;
 	int ca;
@@ -15,15 +13,15 @@ private:
 public:
 	cListaPasajeros(int L);
 	~cListaPasajeros();
-	bool operator+(cPasajero* Pasajero);
+	bool operator+(cPasajero* Pasajero); //sobrecarga operador +
 	cPasajero* Quitar(int pos);
-	cPasajero* operator[](int posic_i);
+	cPasajero* operator[](int posic_i); //sobrecarga operador []
 	void Eliminar(int pos);
-	int Buscar(string _DNI);
+	int Buscar(string _DNI); //sobrecarga del método Buscar
 	int Buscar(cPasajero* pasajero);
-	void AgregarEnPos(int pos, cPasajero* pasajero);
+	void AgregarEnPos(int pos, cPasajero* pasajero); //para el cambio de pasajero
 	void Listar(); //imprime la lista en pantalla
-	cPasajero* PasajeroEncontrado(string DNI);
+	cPasajero* PasajeroEncontrado(string DNI); //devuelve puntero del pasajero con ese DNI
 	int getCA() { return ca; };
-	void operator-(cPasajero* Pasajero); //sobrecarga -
+	void operator-(cPasajero* Pasajero); //sobrecarga operador -
 };

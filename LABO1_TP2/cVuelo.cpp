@@ -1,11 +1,12 @@
 #include "cVuelo.h"
 
-int cVuelo::numeroVuelo = 0;
+int cVuelo::ContadorVuelos = 0;
 
 cVuelo::cVuelo(eDestino _destino)
 {
 	cantpasajeros = 0;
-	numeroVuelo++; 
+	ContadorVuelos++; 
+	numeroVuelo = ContadorVuelos;
 	pesoVuelo = 0;
 	onTime = 0;
 	fechaArribo = new Fecha();
@@ -17,7 +18,7 @@ cVuelo::cVuelo(eDestino _destino)
 	destino = _destino; 
 }
 
-cVuelo::~cVuelo() //completar el destructor
+cVuelo::~cVuelo() 
 {
 	delete fechaArribo;
 	delete fechaPartida;
@@ -27,11 +28,11 @@ cVuelo::~cVuelo() //completar el destructor
 	valija = NULL;
 }
 
-bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) //Recibe el puntero al pasajero a agregar LLA,AR EN EL MAIN AL TRY CATCH
+bool cVuelo::AgregarPasajero(cPasajero* pasajero_vuelo) 
 {
 	if (pasajero_vuelo == NULL)
 		return false;
-		//throw new exception();//llenar
+
 	*listaPasajerosVuelo + pasajero_vuelo;
 	pasajero_vuelo->asiento = cantpasajeros;
 	pasajero_vuelo->numerovuelo = numeroVuelo;
@@ -51,7 +52,7 @@ void cVuelo::ObtenerDatos(string DNI)
 
 }
 
-void cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio) //excepcion
+void cVuelo::CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio) 
 {
 	if (Pasajero_Vuelo == NULL || Pasajero_Cambio == NULL) 
 		throw 1;
@@ -93,7 +94,7 @@ bool cVuelo::setFechas(Fecha* fecha_a, Fecha* fecha_p)
 	return false;
 }
 
-bool cVuelo::ChequearOnTimePartida(Fecha* FechaActual) //devuelve false so la fecha u horario son inválidos
+bool cVuelo::ChequearOnTimePartida(Fecha* FechaActual) //devuelve false si la fecha u horario son inválidos
 {
 	if (FechaActual->esCorrecta() == true && fechaPartida->Comparar(FechaActual) == true)
 	{

@@ -8,7 +8,6 @@ cPasajero::cPasajero(string _DNI)
 	asiento = -1; //cuando el asiento es -1 es porque todaia no fue asigando
 	DNI = _DNI;
 	acumpeso = 0;// pesototal = 0;
-	//valija = NULL;
 }
 cPasajero::~cPasajero()
 {

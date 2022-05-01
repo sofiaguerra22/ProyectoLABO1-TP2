@@ -12,7 +12,7 @@ cListaAviones::cListaAviones(int L = MAX)
 
 }
 
-cListaAviones::~cListaAviones() //HACER:
+cListaAviones::~cListaAviones() 
 {
 	if (ListaAviones != NULL) {
 
@@ -30,7 +30,6 @@ bool cListaAviones::operator+(cAvion* newAvion)
 {
 	if (this->ListaAviones[ca] != NULL) {
 		return false;
-		//throw new exception;
 	}
 	this->ListaAviones[ca] = newAvion;
 	return true;
@@ -62,7 +61,7 @@ void cListaAviones::Eliminar(int pos)
 	}
 }
 
-cAvion* cListaAviones::operator[](int posic_i) //HACER
+cAvion* cListaAviones::operator[](int posic_i) 
 {
 	if (ListaAviones[posic_i] != NULL && posic_i <= ca)
 	{

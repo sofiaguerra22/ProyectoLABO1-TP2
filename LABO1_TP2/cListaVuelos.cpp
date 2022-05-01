@@ -35,7 +35,7 @@ bool cListaVuelos::operator+(cVuelo* Vuelo)
 		return false;
 }
 
-cVuelo* cListaVuelos::Quitar(int pos) //excepcion
+cVuelo* cListaVuelos::Quitar(int pos) 
 {
 	if (pos >= ca || ListaVuelos[pos] == NULL)
 		return NULL;

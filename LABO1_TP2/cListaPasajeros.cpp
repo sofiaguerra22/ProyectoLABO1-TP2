@@ -12,7 +12,7 @@ cListaPasajeros::cListaPasajeros(int L = MAX)
 	}
 }
 
-cListaPasajeros::~cListaPasajeros() //CONSULTAR
+cListaPasajeros::~cListaPasajeros() 
 {
 	if (ListaPasajeros != NULL) {
 
@@ -37,7 +37,7 @@ bool cListaPasajeros::operator+(cPasajero* Pasajero)
 	return false;
 }
 
-cPasajero* cListaPasajeros::Quitar(int pos) //excepcion
+cPasajero* cListaPasajeros::Quitar(int pos) 
 {
 	if (pos > ca || ListaPasajeros[pos] == NULL)
 		return NULL;
