@@ -1,6 +1,6 @@
 #include "cListaAviones.h"
 
-cListaAviones::cListaAviones(unsigned int L)
+cListaAviones::cListaAviones(int L = MAX)
 {
 	ca = 0;
 	//inicializamos todos los punteros de la lista a null
@@ -33,14 +33,13 @@ bool cListaAviones::operator+(cAvion* newAvion)
 		//throw new exception;
 	}
 	this->ListaAviones[ca] = newAvion;
+	return true;
 }
 
-cAvion* cListaAviones::operator-(int pos)
+cAvion* cListaAviones::Quitar(int pos)
 {
-	if (pos >= ca)
-		throw 1;
-	if (ListaAviones[pos] == NULL)
-		throw 2;
+	if (pos > ca || ListaAviones[pos] == NULL)
+		return NULL;
 
 	ca--; //disminuimos la cantidad actual
 	cAvion* aux = ListaAviones[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
@@ -55,22 +54,21 @@ cAvion* cListaAviones::operator-(int pos)
 
 void cListaAviones::Eliminar(int pos)
 {
-	try
+	if (Quitar(pos) != NULL)
 	{
-		*ListaAviones - pos;
+		cAvion* aux = Quitar(pos);
+		aux = NULL;
+		cout << "Se elimino con exito" << endl;
 	}
-	catch (int e)
-	{
-		cout << "Error al eliminar Vuelo numero: " << e << endl;
-	}
-	cAvion* aux = *ListaAviones - pos;
-	aux = NULL;
-	cout << "Se elimino con exito";
 }
 
 cAvion* cListaAviones::operator[](int posic_i) //HACER
 {
-	return nullptr;
+	if (ListaAviones[posic_i] != NULL && posic_i <= ca)
+	{
+		return ListaAviones[posic_i];
+	}
+	return NULL;
 }
 
 int cListaAviones::Buscar(int ID) 

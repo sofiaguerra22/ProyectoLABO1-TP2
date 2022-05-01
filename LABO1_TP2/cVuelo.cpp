@@ -1,9 +1,11 @@
 #include "cVuelo.h"
 
-cVuelo::cVuelo(int _numeroVuelo, eDestino _destino)
+int cVuelo::numeroVuelo = 0;
+
+cVuelo::cVuelo(eDestino _destino)
 {
 	cantpasajeros = 0;
-	numeroVuelo = _numeroVuelo; //CONSULTAR
+	numeroVuelo++; 
 	pesoVuelo = 0;
 	onTime = 0;
 	fechaArribo = new Fecha();

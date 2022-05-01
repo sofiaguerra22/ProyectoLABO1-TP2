@@ -13,7 +13,7 @@ public:
 	cListaValija(int L);
 	~cListaValija();
 	bool operator+(cValija* Valija);
-	cValija* operator-(int pos);
+	cValija* Quitar(int pos);
 	bool Eliminar(int pos);
 	cValija* operator[](int posic_i);
 	void Listar(); //imprime la lista en pantalla

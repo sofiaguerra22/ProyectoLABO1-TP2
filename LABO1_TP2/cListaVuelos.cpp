@@ -20,7 +20,7 @@ cListaVuelos::~cListaVuelos()
 			if (ListaVuelos[i] != NULL)
 				ListaVuelos[i] = NULL;
 		}
-
+		delete ListaVuelos;
 	}
 }
 
@@ -35,12 +35,10 @@ bool cListaVuelos::operator+(cVuelo* Vuelo)
 		return false;
 }
 
-cVuelo* cListaVuelos::operator-(int pos) //excepcion
+cVuelo* cListaVuelos::Quitar(int pos) //excepcion
 {
-	if (pos >= ca)
-		throw 1;
-	if (ListaVuelos[pos] == NULL)
-		throw 2;
+	if (pos >= ca || ListaVuelos[pos] == NULL)
+		return NULL;
 
 	ca--; //disminuimos la cantidad actual
 	cVuelo* aux = ListaVuelos[pos]; //igualamos el aux al puntero en la posición para despues devolverlo
@@ -52,26 +50,30 @@ cVuelo* cListaVuelos::operator-(int pos) //excepcion
 	return aux; //devolvemos el auxiliar creado
 }
 
+cVuelo* cListaVuelos::operator[](int posic_i)
+{
+	if (ListaVuelos[posic_i] != NULL && posic_i <= ca)
+	{
+		return ListaVuelos[posic_i];
+	}
+	return NULL;
+}
+
 void cListaVuelos::Eliminar(int pos)
 {
-	try
+	if (Quitar(pos) != NULL)
 	{
-		*ListaVuelos - pos;
+		cVuelo* aux = Quitar(pos);
+		aux = NULL;
+		cout << "Se elimino con exito";
 	}
-	catch (int e)
-	{
-		cout << "Error al eliminar Vuelo numero: " << e << endl; //1=posición mayor a ca 2=pos = NULL
-	}
-	cVuelo* aux = *ListaVuelos - pos;
-	aux = NULL;
-	cout << "Se elimino con exito";
 }
 
 int cListaVuelos::Buscar(int ID)
 {
 	for (int i = 0; i < ca; i++)
 	{
-		if (ListaVuelos[i]->getNumeroVuelo() == ID);
+		if (ListaVuelos[i]->getNumeroVuelo() == ID)
 		return i;
 	}
 	return -1;

@@ -10,8 +10,8 @@ cAeropuerto::cAeropuerto(int _capacidadmax, int _ID)
 	cantVuelos = 0;
 	cantOnTime = 0;
 	porcentajeOnTime = 0;
-	ListaAviones = new cListaAviones();
-	ListaVuelos = new cListaVuelos();
+	ListaAviones = new cListaAviones(MAX);
+	ListaVuelos = new cListaVuelos(MAX);
 }
 
 cAeropuerto::~cAeropuerto() 

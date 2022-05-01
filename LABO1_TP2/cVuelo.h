@@ -13,7 +13,8 @@ class cVuelo
 {
 	//atributos:
 private:
-	int cantpasajeros, numeroVuelo; //numero de vuelo hay q hacer que se sume de a uno c estatic
+	int cantpasajeros; //numero de vuelo hay q hacer que se sume de a uno c estatic
+	static int numeroVuelo;
 	float pesoVuelo;
 	float onTime; //cant de veces que salieron o llegaron a tiempo, float para después servir en el porcentaje
 	Fecha* fechaArribo;
@@ -26,8 +27,9 @@ private:
 
 
 public:
-	cVuelo(int _numeroVuelo, eDestino _destino);
+	cVuelo(eDestino _destino);
 	~cVuelo();
+	static int getNumeroVuelo() { return numeroVuelo; }; //metodo static
 	bool AgregarPasajero(cPasajero* pasajero_vuelo);
 	void ObtenerDatos(string DNI);
 	void CambiarPasajero(cPasajero* Pasajero_Vuelo, cPasajero* Pasajero_Cambio); 
@@ -38,7 +40,6 @@ public:
 	float getOnTime();
 	void ImprimirDatos();
 	string toString();
-	int getNumeroVuelo() { return this->numeroVuelo; };
 	float getPesoVuelo() { return this->pesoVuelo; };
 	cAvion* getAvion() { return avion; };
 };

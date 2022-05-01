@@ -16,7 +16,8 @@ public:
 	cListaPasajeros(int L);
 	~cListaPasajeros();
 	bool operator+(cPasajero* Pasajero);
-	cPasajero* operator-(int pos);
+	cPasajero* Quitar(int pos);
+	cPasajero* operator[](int posic_i);
 	void Eliminar(int pos);
 	int Buscar(string _DNI);
 	int Buscar(cPasajero* pasajero);
@@ -24,4 +25,5 @@ public:
 	void Listar(); //imprime la lista en pantalla
 	cPasajero* PasajeroEncontrado(string DNI);
 	int getCA() { return ca; };
+	void operator-(cPasajero* Pasajero); //sobrecarga -
 };

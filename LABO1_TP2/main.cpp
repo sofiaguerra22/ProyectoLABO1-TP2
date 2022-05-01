@@ -26,7 +26,7 @@ int main()
 		*ListaValijas + valija1_p1;
 		*ListaValijas + valija2_p1;
 		*ListaValijas + valija1_p2;
-		try
+		try //demostracion de try catch
 		{
 			pasajero1->AgregarEquipaje(valija1_p1);
 			//pasajero1->AgregarEquipaje(valija1_p1); //error 2, valijas superan peso. Comentar para continuar
@@ -55,9 +55,9 @@ int main()
 		Fecha* fecha3 = new Fecha(6, 5, 2022, 12, 10);
 		Fecha* fecha4 = new Fecha(9, 11, 2022, 23, 45);
 	//Vuelos:
-		cVuelo* vuelo1 = new cVuelo(1, eDestino::Londres);
+		cVuelo* vuelo1 = new cVuelo(eDestino::Londres);
 		vuelo1->setFechas(fecha1, fecha2);
-		cVuelo* vuelo2 = new cVuelo(2, eDestino::Paris);
+		cVuelo* vuelo2 = new cVuelo(eDestino::Paris);
 		vuelo2->setFechas(fecha3, fecha4);
 		//ListaVuelos:
 		cListaVuelos* ListaVuelos = new cListaVuelos(MAX);
@@ -73,9 +73,9 @@ int main()
 
 	//try catch de agregarpasajero a vuelo:
 		cout << "\nAgregamos pasajero1 y pasajero3 a vuelo1, vemos asiento y numero de vuelo de pasajero 3: " << endl;
-		vuelo1->AgregarPasajero(pasajero1); //para agregar al pasajero 1 tenemos q comentar el agregar de su segunda valija
+		vuelo1->AgregarPasajero(pasajero1); 
 		vuelo1->AgregarPasajero(pasajero3);
-		pasajero3->ImprimirDatos(); //imprime los datos del pasajero 3, asiento 1, numero de vuelo 1, dni 19... 
+		pasajero3->ImprimirDatos(); //imprime los datos del pasajero 3
 		cout << "\n---------------------------------------------------------------------------------" << endl;
 		system("pause");
 		cout << "\nPeso actual del vuelo 1: " << vuelo1->getPesoVuelo() << endl;
@@ -83,7 +83,7 @@ int main()
 		system("pause");
 		cout << "\nCambiamos al pasajero 3 por el pasajero 2 en el vuelo 1. Imprimimos nuevos datos de pasajero 2:" << endl;
 		vuelo1->CambiarPasajero(pasajero3, pasajero2);
-		pasajero2->ImprimirDatos(); //asiento 1, numero de vuelo 1, dni 27...
+		pasajero2->ImprimirDatos(); 
 		cout << "\n---------------------------------------------------------------------------------" << endl;
 		system("pause");
 		cout << "\nPeso luego del cambio de pasajeros del vuelo 1: " << vuelo1->getPesoVuelo() << endl;
@@ -91,12 +91,13 @@ int main()
 		system("pause");
 		cout << "\nDatos de los vuelos:" << endl;
 		cout << "\nVuelo 1: " << endl;
-		vuelo1->ImprimirDatos(); //onTime=1, fechas 1 y 2, cant pasajeros 2
+		vuelo1->ImprimirDatos(); 
 		cout << "\n---------------------------------------------------------------------------------" << endl;
 		cout << "\nVuelo 2:" << endl;
-		vuelo2->ImprimirDatos(); //onTime=2, fechas 3 y 4, cant pasajeros 0
+		vuelo2->ImprimirDatos(); 
 		cout << "\n---------------------------------------------------------------------------------" << endl;
 		system("pause");
+
 	//Aviones:
 		cAvion* avion1 = new cAvion(1, 10, 5000);
 		cAvion* avion2 = new cAvion(2, 5, 6000);

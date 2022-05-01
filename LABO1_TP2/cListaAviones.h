@@ -12,10 +12,10 @@ class cListaAviones
 	int ca; //cantidad actual
 
 public:
-	cListaAviones(unsigned int L = MAX);
+	cListaAviones(int L);
 	~cListaAviones();
 	bool operator+(cAvion* newAvion);
-	cAvion* operator-(int pos);
+	cAvion* Quitar(int pos);
 	void Eliminar(int pos);
 	cAvion* operator[](int posic_i); //=buscar???
 	int Buscar(int ID);

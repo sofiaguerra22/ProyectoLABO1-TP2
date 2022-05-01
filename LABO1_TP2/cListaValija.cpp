@@ -12,7 +12,7 @@ cListaValija::cListaValija(int L = MAX)
 	}
 }
 
-cListaValija::~cListaValija() //CONSULTAR
+cListaValija::~cListaValija() 
 {
 	if (ListaValija != NULL)
 	{
@@ -36,9 +36,9 @@ bool cListaValija::operator+(cValija* Valija)
 	return false;
 }
 
-cValija* cListaValija::operator-(int pos)
+cValija* cListaValija::Quitar(int pos)
 {
-	if (pos >= ca || ListaValija[pos] == NULL) //no existe tal pos o el puntero a esa posición esta desocupado
+	if (pos > ca || ListaValija[pos] == NULL) //no existe tal pos o el puntero a esa posición esta desocupado
 	{
 		cout << "Posicion incorrecta o desocupada";
 		return NULL;
@@ -56,23 +56,23 @@ cValija* cListaValija::operator-(int pos)
 
 bool cListaValija::Eliminar(int pos)
 {
-	cValija* aux = *ListaValija - pos;
-	if (aux == NULL)
+	if (Quitar(pos) != NULL)
 	{
-		cout << "No se puede eliminar";
-		return false;
-	}
-	else if (aux != NULL)
-	{
+		cValija* aux = Quitar(pos);
 		aux = NULL;
 		cout << "Se elimino con exito";
 		return true;
 	}
+	return false;
 }
 
 cValija* cListaValija::operator[](int posic_i) //HACER
 {
-	return nullptr;
+	if (ListaValija[posic_i] != NULL && posic_i <= ca)
+	{
+		return ListaValija[posic_i];
+	}
+	return NULL;
 }
 
 void cListaValija::Listar()

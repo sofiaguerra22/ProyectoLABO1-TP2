@@ -13,7 +13,8 @@ public:
 	cListaVuelos(int L = MAX);
 	~cListaVuelos();
 	bool operator+(cVuelo* Vuelo);
-	cVuelo* operator-(int pos);
+	cVuelo* Quitar(int pos);
+	cVuelo* operator[](int posic_i);
 	void Eliminar(int pos);
 	cVuelo* VueloEncontrado(int ID);
 	int Buscar(int ID); //recibe el id del vuelo
