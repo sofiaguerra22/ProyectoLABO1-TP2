@@ -39,8 +39,13 @@ public:
 	bool ChequearOnTimeArribo(Fecha* FechaActual);
 	float getOnTime();
 	void ImprimirDatos();
+	string ImprimirDestino() { return DestinoToString(destino); };
 	string toString();
 	float getPesoVuelo() { return this->pesoVuelo; };
 	cAvion* getAvion() { return avion; };
+	friend ostream& operator<<(ostream& output, cVuelo &V) {
+		output << "Cantidad Pasajeros : " << V.cantpasajeros << endl;
+		return output;
+	}
 };
 
